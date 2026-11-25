@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#24135f">
+<title>Pixel Arte · Registro</title>
+<style>
+:root{
+  --bg:#f4f2f9; --card:#fff; --ink:#1d1730; --muted:#6c6680; --line:#e6e2ef;
+  --brand:#4b2bd0; --brand-ink:#24135f; --accent:#4b2bd0; --tint:#eeeafd;
+  --ok:#15803d; --okt:#e7f6ec; --warn:#b45309; --warnt:#fdf1e3; --bad:#be123c; --badt:#fde8ee; --r:18px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:inherit}
+.hide{display:none!important}
+.ic{flex:none;display:block}
+.top{position:sticky;top:0;z-index:20;background:var(--brand-ink);color:#fff;padding:calc(env(safe-area-inset-top) + 10px) 14px 10px;display:flex;align-items:center;gap:10px}
+.logo{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:17px;background:linear-gradient(135deg,#8b5cf6,#ec4899 55%,#f59e0b);color:#fff;letter-spacing:-.5px;flex:none}
+.brand{min-width:0}
+.brand b{display:block;font-size:18px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand small{opacity:.72;font-size:12.5px}
+.sp{flex:1}
+.icon-btn{width:44px;height:44px;border-radius:13px;border:0;background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center;flex:none}
+.icon-btn:active{background:rgba(255,255,255,.22)}
+.icon-btn.spinning .ic{animation:rot .9s linear infinite}
+main{max-width:760px;margin:0 auto;padding:16px 14px 48px}
+.warnbar{background:var(--warnt);color:var(--warn);border-radius:14px;padding:12px 14px;margin-bottom:14px;font-size:14px}
+.errbar{background:var(--badt);color:var(--bad);border-radius:14px;padding:12px 14px;margin-bottom:14px;font-size:14.5px}
+.infobar{background:#eef2ff;color:#3730a3;border-radius:14px;padding:12px 14px;margin:0 0 14px;font-size:13.5px;line-height:1.4}
+.loading{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--muted);padding:50px 0}
+.spin-d{width:26px;height:26px;border-radius:50%;border:3px solid #d8d2ea;border-top-color:var(--brand);animation:rot .8s linear infinite;flex:none}
+.spin{width:22px;height:22px;border-radius:50%;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;animation:rot .8s linear infinite;flex:none}
+@keyframes rot{to{transform:rotate(360deg)}}
+.small{font-size:13.5px;color:var(--muted)}
+
+/* ---- Inicio (clientes) ---- */
+.hero h1{font-size:25px;line-height:1.2;margin:4px 2px 6px;letter-spacing:-.3px}
+.hero p{margin:0 2px 16px;color:var(--muted)}
+.keep{display:flex;align-items:center;gap:10px;background:var(--card);border:1.5px dashed #cfc6ee;border-radius:14px;padding:10px 12px;margin:0 0 14px;font-size:14px}
+.keep b{font-weight:650}
+.keep button{margin-left:auto;border:0;background:none;color:var(--bad);font-weight:600;padding:6px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (min-width:620px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.tcard{position:relative;text-align:left;border:0;background:var(--card);border-radius:var(--r);padding:16px 14px 18px;min-height:150px;display:flex;flex-direction:column;gap:10px;color:var(--ink);overflow:hidden;box-shadow:0 1px 0 var(--line),0 8px 20px -14px rgba(40,20,90,.45);transition:transform .08s}
+.tcard:active{transform:scale(.98)}
+.tcard::after{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;background:var(--c)}
+.tcard.wide{grid-column:1/-1;flex-direction:row;align-items:center;min-height:0;padding:14px 14px 17px;gap:14px}
+@media (min-width:620px){.tcard.wide{grid-column:auto;flex-direction:column;align-items:flex-start;min-height:150px}}
+.tile{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:var(--c);background:var(--t);flex:none}
+.tcard b{font-size:17px;line-height:1.2}
+.tcard small{color:var(--muted);font-size:13px;line-height:1.3;display:block}
+.tcard .tx{display:flex;flex-direction:column;gap:3px}
+
+/* ---- Formulario ---- */
+.banner{display:flex;align-items:center;gap:12px;border-radius:var(--r);padding:12px 12px 12px 14px;background:var(--accent);color:#fff;margin-bottom:12px}
+.banner .bt{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;flex:none}
+.banner small{display:block;opacity:.85;font-size:12px;text-transform:uppercase;letter-spacing:.6px}
+.banner b{font-size:19px;line-height:1.15}
+.banner button{margin-left:auto;border:1.5px solid rgba(255,255,255,.55);background:transparent;color:#fff;border-radius:11px;padding:8px 12px;font-size:14px;font-weight:600}
+.steps{display:flex;gap:6px;margin:4px 2px 6px}
+.steps i{flex:1;height:5px;border-radius:5px;background:#dcd6ea}
+.steps i.on{background:var(--accent)}
+.steplbl{font-size:13px;color:var(--muted);margin:0 2px 12px}
+.card{background:var(--card);border-radius:var(--r);padding:18px 16px 6px;margin-bottom:12px;box-shadow:0 1px 0 var(--line),0 8px 20px -16px rgba(40,20,90,.45)}
+.card h2{margin:0 0 14px;font-size:18px}
+.note{background:var(--tint);border-radius:12px;padding:12px 14px;font-size:14px;margin:0 0 16px;line-height:1.4}
+.f{margin-bottom:18px}
+.f label,.flabel{display:block;font-size:13px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;margin:0 0 7px;color:#3a3350}
+.req{color:var(--bad);margin-left:3px}
+.opt{color:var(--muted);font-weight:600;text-transform:none;letter-spacing:0;margin-left:6px}
+.f .hint{font-size:13px;color:var(--muted);margin:-2px 0 8px}
+.in{width:100%;min-height:50px;border:1.5px solid #d6d0e4;border-radius:13px;padding:12px 14px;background:#fff;outline:none;font-size:16px}
+textarea.in{min-height:92px;resize:vertical}
+select.in{appearance:none;-webkit-appearance:none;padding-right:42px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236c6680' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.in:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--tint)}
+.f.err .in{border-color:var(--bad)}
+.f .emsg{display:none;color:var(--bad);font-size:13.5px;margin-top:6px}
+.f.err .emsg{display:block}
+.otra{margin-top:10px}
+.radios{display:grid;gap:10px}
+.f label.radio,.radio{display:flex;align-items:center;gap:12px;border:1.5px solid #d6d0e4;border-radius:14px;padding:14px;background:#fff;text-transform:none;letter-spacing:0;font-size:15.5px;font-weight:600;color:var(--ink);margin:0;line-height:1.3}
+.radio input{width:22px;height:22px;accent-color:var(--accent);margin:0;flex:none}
+.radio.sel{border-color:var(--accent);background:var(--tint)}
+.linkbtn{display:flex;align-items:center;gap:10px;width:100%;border:1.5px solid var(--accent);color:var(--accent);background:#fff;border-radius:14px;padding:13px 14px;font-weight:650;text-decoration:none;margin-bottom:16px;text-align:left}
+.thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.thumb{position:relative;aspect-ratio:1/1;border-radius:13px;overflow:hidden;background:#ece8f5;display:grid;place-items:center;color:var(--muted)}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.thumb .rm{position:absolute;top:6px;right:6px;width:32px;height:32px;border-radius:50%;border:0;background:rgba(20,10,40,.72);color:#fff;display:grid;place-items:center}
+.thumb .n{position:absolute;left:6px;bottom:6px;background:rgba(20,10,40,.72);color:#fff;font-size:12px;font-weight:700;border-radius:8px;padding:2px 7px}
+.addtile{aspect-ratio:1/1;border-radius:13px;border:2px dashed var(--accent);background:var(--tint);color:var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-weight:650;font-size:14px}
+.count{font-size:13.5px;color:var(--muted);margin:10px 0 0}
+.docrow{display:flex;align-items:center;gap:12px;border:1.5px solid #d6d0e4;border-radius:14px;padding:12px;background:#fff;color:inherit;width:100%;text-align:left;text-decoration:none}
+.docrow .di{width:44px;height:44px;border-radius:12px;background:var(--tint);color:var(--accent);display:grid;place-items:center;flex:none}
+.docrow .dn{min-width:0;flex:1}
+.docrow .dn b{display:block;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.docrow .dn small{color:var(--muted);font-size:12.5px}
+.docrow .rm{border:0;background:none;color:var(--bad);padding:8px}
+.upbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:56px;border-radius:14px;border:2px dashed var(--accent);background:var(--tint);color:var(--accent);font-weight:700}
+.actions{display:flex;gap:10px;margin-top:6px}
+.btn{min-height:54px;border-radius:15px;border:0;padding:0 18px;font-weight:700;font-size:16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.btn.primary{flex:1;background:var(--accent);color:#fff;box-shadow:0 8px 18px -10px var(--accent)}
+.btn.primary:active{filter:brightness(.92)}
+.btn.ghost{background:#fff;color:var(--ink);border:1.5px solid #d6d0e4}
+.btn.danger{background:var(--bad);color:#fff}
+.btn.block{width:100%}
+.btn[disabled]{opacity:.7}
+.rv{display:grid;margin:0 0 10px}
+.rv div{display:flex;flex-direction:column;padding:10px 0;border-bottom:1px solid var(--line)}
+.rv div:last-child{border-bottom:0}
+.rv dt{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
+.rv dd{margin:2px 0 0;font-size:16px;word-break:break-word;white-space:pre-wrap}
+.big-tramite{border:2px solid var(--accent);background:var(--tint);color:var(--accent);border-radius:15px;padding:12px 14px;font-weight:800;font-size:17px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.done{text-align:center;padding:26px 6px 6px}
+.done .ok{width:84px;height:84px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;background:var(--accent);color:#fff;box-shadow:0 14px 30px -14px var(--accent)}
+.done h1{margin:0 0 6px;font-size:26px}
+.done p{margin:0 0 4px;color:var(--muted)}
+.folio{display:inline-block;margin:14px 0 22px;padding:10px 18px;border-radius:14px;background:#fff;border:1.5px solid var(--line);font-size:15px}
+.folio b{font-size:24px;color:var(--accent);display:block;letter-spacing:.5px}
+.stack{display:grid;gap:10px}
+
+/* ---- Panel ---- */
+.login{min-height:calc(100vh - 140px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px 10px}
+.login .big{width:92px;height:92px;border-radius:28px;font-size:36px;margin-bottom:18px;box-shadow:0 18px 36px -18px #8b5cf6}
+.login h1{margin:0 0 6px;font-size:25px}
+.login > p{margin:0 0 22px;color:var(--muted);max-width:330px}
+.gbtn{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid #dadce0;border-radius:999px;padding:12px 22px 12px 14px;font-weight:650;font-size:16px;color:#1f1f1f;min-height:54px;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.gbtn[disabled]{opacity:.6}
+.gbtn .g{width:26px;height:26px;display:grid;place-items:center}
+.sep{color:var(--muted);font-size:13.5px;margin:18px 0 10px}
+.pinrow{display:flex;gap:8px;width:100%;max-width:340px}
+.pinrow .in{text-align:center;letter-spacing:8px;font-size:22px;font-weight:700}
+.pinrow .btn{flex:none}
+.ptitle{display:flex;align-items:center;gap:8px;margin:2px 0 12px}
+.ptitle h1{font-size:23px;margin:0}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 14px 10px;margin:0 -14px 4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1.5px solid #d6d0e4;background:#fff;border-radius:999px;padding:8px 13px;font-size:14px;font-weight:650;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.chip .dot{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.chip em{font-style:normal;color:var(--muted);font-weight:600}
+.chip.on{background:var(--brand-ink);border-color:var(--brand-ink);color:#fff}
+.chip.on em{color:#d8d0ff}
+.search{position:relative;margin-bottom:10px}
+.search .ic{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.search .in{padding-left:42px}
+.seg{display:flex;background:#e9e5f3;border-radius:13px;padding:4px;gap:4px;margin-bottom:12px}
+.seg button{flex:1;border:0;background:transparent;border-radius:10px;padding:9px 4px;font-size:13.5px;font-weight:650;color:#4b4462}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.tools{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tool{flex:1;min-width:110px;display:flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid #d6d0e4;background:#fff;border-radius:13px;min-height:46px;font-weight:650;font-size:14px;padding:0 10px;color:var(--ink);text-decoration:none}
+.tool.sm{flex:none;min-width:0}
+.list{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;background:var(--card);border-radius:16px;padding:12px;box-shadow:0 1px 0 var(--line),0 6px 16px -14px rgba(40,20,90,.5);color:var(--ink)}
+.row .ri{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;color:var(--c);background:var(--t);flex:none}
+.row .rm2{min-width:0;flex:1}
+.row b{display:block;font-size:15.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row small{display:block;color:var(--muted);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{flex:none;font-size:12px;font-weight:700;border-radius:999px;padding:4px 9px}
+.e-pendiente{background:var(--warnt);color:var(--warn)}
+.e-listo{background:#e6effd;color:#1d4ed8}
+.e-entregado{background:var(--okt);color:var(--ok)}
+.empty{text-align:center;color:var(--muted);padding:40px 10px}
+.dhead{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.dhead .ri{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;color:var(--c);background:var(--t);flex:none}
+.dhead h1{font-size:21px;margin:0;line-height:1.2}
+.dhead small{color:var(--muted)}
+.estados{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.estados button{border:1.5px solid #d6d0e4;background:#fff;border-radius:13px;min-height:46px;font-weight:700;font-size:14px}
+.estados button.on.pendiente{background:var(--warnt);border-color:var(--warn);color:var(--warn)}
+.estados button.on.listo{background:#e6effd;border-color:#1d4ed8;color:#1d4ed8}
+.estados button.on.entregado{background:var(--okt);border-color:var(--ok);color:var(--ok)}
+.files{display:grid;gap:8px;margin-bottom:12px}
+.files .di{background:var(--t);color:var(--c)}
+.sub{font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin:18px 2px 8px}
+.kv{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.kv .k{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
+.kv .v{font-size:15.5px;word-break:break-all}
+.kv .grow{flex:1;min-width:0}
+.qrcard{background:#fff;border-radius:22px;padding:24px 20px;text-align:center;box-shadow:0 1px 0 var(--line),0 10px 26px -16px rgba(40,20,90,.5);margin-bottom:12px}
+.qrcard h2{margin:0 0 4px;font-size:22px}
+.qrcard p{margin:0 0 16px;color:var(--muted)}
+.qrbox{width:min(78vw,340px);margin:0 auto 14px}
+.qrbox svg{width:100%;height:auto;display:block}
+.qrurl{font-size:12px;color:var(--muted);word-break:break-all;margin:8px 0 0}
+
+#modal-root.on{position:fixed;inset:0;z-index:50}
+.mback{position:absolute;inset:0;background:rgba(18,10,40,.55);display:flex;align-items:flex-end;justify-content:center}
+@media (min-width:620px){.mback{align-items:center}}
+.modal{background:#fff;width:100%;max-width:520px;border-radius:22px 22px 0 0;padding:20px 18px calc(18px + env(safe-area-inset-bottom));max-height:92vh;overflow:auto}
+@media (min-width:620px){.modal{border-radius:22px}}
+.modal h3{margin:0 0 6px;font-size:20px}
+.modal p{margin:0 0 14px;color:var(--muted)}
+.viewer img{width:100%;display:block;border-radius:12px;margin-bottom:10px;background:#eee}
+#toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);opacity:0;background:#1d1730;color:#fff;border-radius:14px;padding:12px 16px;font-size:14.5px;z-index:60;max-width:calc(100% - 28px);transition:.2s;pointer-events:none;text-align:center}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+/* Fluidez: respuesta inmediata al tocar, entrada suave de pantallas, lista que solo pinta lo visible */
+button,a,.tcard,.row,.chip,.tool,.btn{touch-action:manipulation}
+.btn,.tool,.chip,.row,.seg button,.estados button,.gbtn,.upbtn,.addtile,.linkbtn{transition:transform .12s ease,filter .12s ease,background-color .15s ease}
+.btn:active,.tool:active,.chip:active,.row:active,.seg button:active,.estados button:active,.gbtn:active,.upbtn:active,.addtile:active,.linkbtn:active{transform:scale(.975)}
+.tcard{transition:transform .12s ease}
+#view.anim{animation:entra .2s cubic-bezier(.2,.7,.3,1) both}
+@keyframes entra{from{opacity:0;transform:translate3d(0,8px,0)}to{opacity:1;transform:none}}
+.row{content-visibility:auto;contain-intrinsic-size:auto 76px}
+.row.skel{pointer-events:none}
+.row.skel .ri,.row.skel b,.row.skel small{background:linear-gradient(90deg,#ece8f5 25%,#f6f4fb 50%,#ece8f5 75%);background-size:200% 100%;animation:brillo 1.2s linear infinite;border-radius:8px}
+.row.skel b{height:15px;width:60%;margin:4px 0 8px}
+.row.skel small{height:11px;width:85%}
+@keyframes brillo{to{background-position:-200% 0}}
+#netbar{position:fixed;left:0;right:0;top:0;z-index:70;background:#b45309;color:#fff;text-align:center;font-size:13.5px;font-weight:600;padding:calc(env(safe-area-inset-top) + 6px) 10px 6px;transform:translateY(-110%);transition:transform .25s ease}
+#netbar.on{transform:none}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media print{
+  body{background:#fff}
+  .top,#toast,#modal-root,.noprint{display:none!important}
+  main{padding:0}
+  .qrcard{box-shadow:none;margin-top:40px}
+  .qrbox{width:300px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="logo" id="logo">PA</div>
+  <div class="brand"><b id="bizname">Pixel Arte</b><small id="bizsub">Registro de clientes</small></div>
+  <div class="sp"></div>
+  <span id="hbtns"></span>
+</header>
+<main id="view"><div class="loading"><span class="spin-d"></span>Cargando…</div></main>
+<div id="netbar" role="status" aria-live="polite">Sin internet · lo que escribas se guarda en este celular</div>
+<div id="modal-root"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<!-- config.js tiene el link de tu servidor de Google. Se edita UNA vez y no se reemplaza al actualizar. -->
+<script src="config.js"></script>
+<script>
+// Copyright (c) 2009 Kazuhiko Arase
+// Licensed under the MIT license:
+var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],f={},c=function(t,r){o=function(t){for(var r=new Array(t),e=0;e<t;e+=1){r[e]=new Array(t);for(var n=0;n<t;n+=1)r[e][n]=null}return r}(i=4*e+17),l(0,0),l(i-7,0),l(0,i-7),s(),h(),d(t,r),e>=7&&v(t),null==a&&(a=p(e,n,u)),w(a,r)},l=function(t,r){for(var e=-1;e<=7;e+=1)if(!(t+e<=-1||i<=t+e))for(var n=-1;n<=7;n+=1)r+n<=-1||i<=r+n||(o[t+e][r+n]=0<=e&&e<=6&&(0==n||6==n)||0<=n&&n<=6&&(0==e||6==e)||2<=e&&e<=4&&2<=n&&n<=4)},h=function(){for(var t=8;t<i-8;t+=1)null==o[t][6]&&(o[t][6]=t%2==0);for(var r=8;r<i-8;r+=1)null==o[6][r]&&(o[6][r]=r%2==0)},s=function(){for(var t=B.getPatternPosition(e),r=0;r<t.length;r+=1)for(var n=0;n<t.length;n+=1){var i=t[r],a=t[n];if(null==o[i][a])for(var u=-2;u<=2;u+=1)for(var f=-2;f<=2;f+=1)o[i+u][a+f]=-2==u||2==u||-2==f||2==f||0==u&&0==f}},v=function(t){for(var r=B.getBCHTypeNumber(e),n=0;n<18;n+=1){var a=!t&&1==(r>>n&1);o[Math.floor(n/3)][n%3+i-8-3]=a}for(n=0;n<18;n+=1){a=!t&&1==(r>>n&1);o[n%3+i-8-3][Math.floor(n/3)]=a}},d=function(t,r){for(var e=n<<3|r,a=B.getBCHTypeInfo(e),u=0;u<15;u+=1){var f=!t&&1==(a>>u&1);u<6?o[u][8]=f:u<8?o[u+1][8]=f:o[i-15+u][8]=f}for(u=0;u<15;u+=1){f=!t&&1==(a>>u&1);u<8?o[8][i-u-1]=f:u<9?o[8][15-u-1+1]=f:o[8][15-u-1]=f}o[i-8][8]=!t},w=function(t,r){for(var e=-1,n=i-1,a=7,u=0,f=B.getMaskFunction(r),c=i-1;c>0;c-=2)for(6==c&&(c-=1);;){for(var g=0;g<2;g+=1)if(null==o[n][c-g]){var l=!1;u<t.length&&(l=1==(t[u]>>>a&1)),f(n,c-g)&&(l=!l),o[n][c-g]=l,-1==(a-=1)&&(u+=1,a=7)}if((n+=e)<0||i<=n){n-=e,e=-e;break}}},p=function(t,r,e){for(var n=A.getRSBlocks(t,r),o=b(),i=0;i<e.length;i+=1){var a=e[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var u=0;for(i=0;i<n.length;i+=1)u+=n[i].dataCount;if(o.getLengthInBits()>8*u)throw"code length overflow. ("+o.getLengthInBits()+">"+8*u+")";for(o.getLengthInBits()+4<=8*u&&o.put(0,4);o.getLengthInBits()%8!=0;)o.putBit(!1);for(;!(o.getLengthInBits()>=8*u||(o.put(236,8),o.getLengthInBits()>=8*u));)o.put(17,8);return function(t,r){for(var e=0,n=0,o=0,i=new Array(r.length),a=new Array(r.length),u=0;u<r.length;u+=1){var f=r[u].dataCount,c=r[u].totalCount-f;n=Math.max(n,f),o=Math.max(o,c),i[u]=new Array(f);for(var g=0;g<i[u].length;g+=1)i[u][g]=255&t.getBuffer()[g+e];e+=f;var l=B.getErrorCorrectPolynomial(c),h=k(i[u],l.getLength()-1).mod(l);for(a[u]=new Array(l.getLength()-1),g=0;g<a[u].length;g+=1){var s=g+h.getLength()-a[u].length;a[u][g]=s>=0?h.getAt(s):0}}var v=0;for(g=0;g<r.length;g+=1)v+=r[g].totalCount;var d=new Array(v),w=0;for(g=0;g<n;g+=1)for(u=0;u<r.length;u+=1)g<i[u].length&&(d[w]=i[u][g],w+=1);for(g=0;g<o;g+=1)for(u=0;u<r.length;u+=1)g<a[u].length&&(d[w]=a[u][g],w+=1);return d}(o,n)};f.addData=function(t,r){var e=null;switch(r=r||"Byte"){case"Numeric":e=M(t);break;case"Alphanumeric":e=x(t);break;case"Byte":e=m(t);break;case"Kanji":e=L(t);break;default:throw"mode:"+r}u.push(e),a=null},f.isDark=function(t,r){if(t<0||i<=t||r<0||i<=r)throw t+","+r;return o[t][r]},f.getModuleCount=function(){return i},f.make=function(){if(e<1){for(var t=1;t<40;t++){for(var r=A.getRSBlocks(t,n),o=b(),i=0;i<u.length;i++){var a=u[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var g=0;for(i=0;i<r.length;i++)g+=r[i].dataCount;if(o.getLengthInBits()<=8*g)break}e=t}c(!1,function(){for(var t=0,r=0,e=0;e<8;e+=1){c(!0,e);var n=B.getLostPoint(f);(0==e||t>n)&&(t=n,r=e)}return r}())},f.createTableTag=function(t,r){t=t||2;var e="";e+='<table style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: "+(r=void 0===r?4*t:r)+"px;",e+='">',e+="<tbody>";for(var n=0;n<f.getModuleCount();n+=1){e+="<tr>";for(var o=0;o<f.getModuleCount();o+=1)e+='<td style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: 0px;",e+=" width: "+t+"px;",e+=" height: "+t+"px;",e+=" background-color: ",e+=f.isDark(n,o)?"#000000":"#ffffff",e+=";",e+='"/>';e+="</tr>"}return e+="</tbody>",e+="</table>"},f.createSvgTag=function(t,r,e,n){var o={};"object"==typeof arguments[0]&&(t=(o=arguments[0]).cellSize,r=o.margin,e=o.alt,n=o.title),t=t||2,r=void 0===r?4*t:r,(e="string"==typeof e?{text:e}:e||{}).text=e.text||null,e.id=e.text?e.id||"qrcode-description":null,(n="string"==typeof n?{text:n}:n||{}).text=n.text||null,n.id=n.text?n.id||"qrcode-title":null;var i,a,u,c,g=f.getModuleCount()*t+2*r,l="";for(c="l"+t+",0 0,"+t+" -"+t+",0 0,-"+t+"z ",l+='<svg version="1.1" xmlns="http://www.w3.org/2000/svg"',l+=o.scalable?"":' width="'+g+'px" height="'+g+'px"',l+=' viewBox="0 0 '+g+" "+g+'" ',l+=' preserveAspectRatio="xMinYMin meet"',l+=n.text||e.text?' role="img" aria-labelledby="'+y([n.id,e.id].join(" ").trim())+'"':"",l+=">",l+=n.text?'<title id="'+y(n.id)+'">'+y(n.text)+"</title>":"",l+=e.text?'<description id="'+y(e.id)+'">'+y(e.text)+"</description>":"",l+='<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>',l+='<path d="',a=0;a<f.getModuleCount();a+=1)for(u=a*t+r,i=0;i<f.getModuleCount();i+=1)f.isDark(a,i)&&(l+="M"+(i*t+r)+","+u+c);return l+='" stroke="transparent" fill="black"/>',l+="</svg>"},f.createDataURL=function(t,r){t=t||2,r=void 0===r?4*t:r;var e=f.getModuleCount()*t+2*r,n=r,o=e-r;return I(e,e,function(r,e){if(n<=r&&r<o&&n<=e&&e<o){var i=Math.floor((r-n)/t),a=Math.floor((e-n)/t);return f.isDark(a,i)?0:1}return 1})},f.createImgTag=function(t,r,e){t=t||2,r=void 0===r?4*t:r;var n=f.getModuleCount()*t+2*r,o="";return o+="<img",o+=' src="',o+=f.createDataURL(t,r),o+='"',o+=' width="',o+=n,o+='"',o+=' height="',o+=n,o+='"',e&&(o+=' alt="',o+=y(e),o+='"'),o+="/>"};var y=function(t){for(var r="",e=0;e<t.length;e+=1){var n=t.charAt(e);switch(n){case"<":r+="&lt;";break;case">":r+="&gt;";break;case"&":r+="&amp;";break;case'"':r+="&quot;";break;default:r+=n}}return r};return f.createASCII=function(t,r){if((t=t||1)<2)return function(t){t=void 0===t?2:t;var r,e,n,o,i,a=1*f.getModuleCount()+2*t,u=t,c=a-t,g={"██":"█","█ ":"▀"," █":"▄","  ":" "},l={"██":"▀","█ ":"▀"," █":" ","  ":" "},h="";for(r=0;r<a;r+=2){for(n=Math.floor((r-u)/1),o=Math.floor((r+1-u)/1),e=0;e<a;e+=1)i="█",u<=e&&e<c&&u<=r&&r<c&&f.isDark(n,Math.floor((e-u)/1))&&(i=" "),u<=e&&e<c&&u<=r+1&&r+1<c&&f.isDark(o,Math.floor((e-u)/1))?i+=" ":i+="█",h+=t<1&&r+1>=c?l[i]:g[i];h+="\n"}return a%2&&t>0?h.substring(0,h.length-a-1)+Array(a+1).join("▀"):h.substring(0,h.length-1)}(r);t-=1,r=void 0===r?2*t:r;var e,n,o,i,a=f.getModuleCount()*t+2*r,u=r,c=a-r,g=Array(t+1).join("██"),l=Array(t+1).join("  "),h="",s="";for(e=0;e<a;e+=1){for(o=Math.floor((e-u)/t),s="",n=0;n<a;n+=1)i=1,u<=n&&n<c&&u<=e&&e<c&&f.isDark(o,Math.floor((n-u)/t))&&(i=0),s+=i?g:l;for(o=0;o<t;o+=1)h+=s+"\n"}return h.substring(0,h.length-1)},f.renderTo2dContext=function(t,r){r=r||2;for(var e=f.getModuleCount(),n=0;n<e;n++)for(var o=0;o<e;o++)t.fillStyle=f.isDark(n,o)?"black":"white",t.fillRect(o*r,n*r,r,r)},f};t.stringToBytes=(t.stringToBytesFuncs={default:function(t){for(var r=[],e=0;e<t.length;e+=1){var n=t.charCodeAt(e);r.push(255&n)}return r}}).default,t.createStringToBytes=function(t,r){var e=function(){for(var e=S(t),n=function(){var t=e.read();if(-1==t)throw"eof";return t},o=0,i={};;){var a=e.read();if(-1==a)break;var u=n(),f=n()<<8|n();i[String.fromCharCode(a<<8|u)]=f,o+=1}if(o!=r)throw o+" != "+r;return i}(),n="?".charCodeAt(0);return function(t){for(var r=[],o=0;o<t.length;o+=1){var i=t.charCodeAt(o);if(i<128)r.push(i);else{var a=e[t.charAt(o)];"number"==typeof a?(255&a)==a?r.push(a):(r.push(a>>>8),r.push(255&a)):r.push(n)}}return r}};var r,e,n,o,i,a=1,u=2,f=4,c=8,g={L:1,M:0,Q:3,H:2},l=0,h=1,s=2,v=3,d=4,w=5,p=6,y=7,B=(r=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],e=1335,n=7973,i=function(t){for(var r=0;0!=t;)r+=1,t>>>=1;return r},(o={}).getBCHTypeInfo=function(t){for(var r=t<<10;i(r)-i(e)>=0;)r^=e<<i(r)-i(e);return 21522^(t<<10|r)},o.getBCHTypeNumber=function(t){for(var r=t<<12;i(r)-i(n)>=0;)r^=n<<i(r)-i(n);return t<<12|r},o.getPatternPosition=function(t){return r[t-1]},o.getMaskFunction=function(t){switch(t){case l:return function(t,r){return(t+r)%2==0};case h:return function(t,r){return t%2==0};case s:return function(t,r){return r%3==0};case v:return function(t,r){return(t+r)%3==0};case d:return function(t,r){return(Math.floor(t/2)+Math.floor(r/3))%2==0};case w:return function(t,r){return t*r%2+t*r%3==0};case p:return function(t,r){return(t*r%2+t*r%3)%2==0};case y:return function(t,r){return(t*r%3+(t+r)%2)%2==0};default:throw"bad maskPattern:"+t}},o.getErrorCorrectPolynomial=function(t){for(var r=k([1],0),e=0;e<t;e+=1)r=r.multiply(k([1,C.gexp(e)],0));return r},o.getLengthInBits=function(t,r){if(1<=r&&r<10)switch(t){case a:return 10;case u:return 9;case f:case c:return 8;default:throw"mode:"+t}else if(r<27)switch(t){case a:return 12;case u:return 11;case f:return 16;case c:return 10;default:throw"mode:"+t}else{if(!(r<41))throw"type:"+r;switch(t){case a:return 14;case u:return 13;case f:return 16;case c:return 12;default:throw"mode:"+t}}},o.getLostPoint=function(t){for(var r=t.getModuleCount(),e=0,n=0;n<r;n+=1)for(var o=0;o<r;o+=1){for(var i=0,a=t.isDark(n,o),u=-1;u<=1;u+=1)if(!(n+u<0||r<=n+u))for(var f=-1;f<=1;f+=1)o+f<0||r<=o+f||0==u&&0==f||a==t.isDark(n+u,o+f)&&(i+=1);i>5&&(e+=3+i-5)}for(n=0;n<r-1;n+=1)for(o=0;o<r-1;o+=1){var c=0;t.isDark(n,o)&&(c+=1),t.isDark(n+1,o)&&(c+=1),t.isDark(n,o+1)&&(c+=1),t.isDark(n+1,o+1)&&(c+=1),0!=c&&4!=c||(e+=3)}for(n=0;n<r;n+=1)for(o=0;o<r-6;o+=1)t.isDark(n,o)&&!t.isDark(n,o+1)&&t.isDark(n,o+2)&&t.isDark(n,o+3)&&t.isDark(n,o+4)&&!t.isDark(n,o+5)&&t.isDark(n,o+6)&&(e+=40);for(o=0;o<r;o+=1)for(n=0;n<r-6;n+=1)t.isDark(n,o)&&!t.isDark(n+1,o)&&t.isDark(n+2,o)&&t.isDark(n+3,o)&&t.isDark(n+4,o)&&!t.isDark(n+5,o)&&t.isDark(n+6,o)&&(e+=40);var g=0;for(o=0;o<r;o+=1)for(n=0;n<r;n+=1)t.isDark(n,o)&&(g+=1);return e+=Math.abs(100*g/r/r-50)/5*10},o),C=function(){for(var t=new Array(256),r=new Array(256),e=0;e<8;e+=1)t[e]=1<<e;for(e=8;e<256;e+=1)t[e]=t[e-4]^t[e-5]^t[e-6]^t[e-8];for(e=0;e<255;e+=1)r[t[e]]=e;var n={glog:function(t){if(t<1)throw"glog("+t+")";return r[t]},gexp:function(r){for(;r<0;)r+=255;for(;r>=256;)r-=255;return t[r]}};return n}();function k(t,r){if(void 0===t.length)throw t.length+"/"+r;var e=function(){for(var e=0;e<t.length&&0==t[e];)e+=1;for(var n=new Array(t.length-e+r),o=0;o<t.length-e;o+=1)n[o]=t[o+e];return n}(),n={getAt:function(t){return e[t]},getLength:function(){return e.length},multiply:function(t){for(var r=new Array(n.getLength()+t.getLength()-1),e=0;e<n.getLength();e+=1)for(var o=0;o<t.getLength();o+=1)r[e+o]^=C.gexp(C.glog(n.getAt(e))+C.glog(t.getAt(o)));return k(r,0)},mod:function(t){if(n.getLength()-t.getLength()<0)return n;for(var r=C.glog(n.getAt(0))-C.glog(t.getAt(0)),e=new Array(n.getLength()),o=0;o<n.getLength();o+=1)e[o]=n.getAt(o);for(o=0;o<t.getLength();o+=1)e[o]^=C.gexp(C.glog(t.getAt(o))+r);return k(e,0).mod(t)}};return n}var A=function(){var t=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12,7,37,13],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],r=function(t,r){var e={};return e.totalCount=t,e.dataCount=r,e},e={};return e.getRSBlocks=function(e,n){var o=function(r,e){switch(e){case g.L:return t[4*(r-1)+0];case g.M:return t[4*(r-1)+1];case g.Q:return t[4*(r-1)+2];case g.H:return t[4*(r-1)+3];default:return}}(e,n);if(void 0===o)throw"bad rs block @ typeNumber:"+e+"/errorCorrectionLevel:"+n;for(var i=o.length/3,a=[],u=0;u<i;u+=1)for(var f=o[3*u+0],c=o[3*u+1],l=o[3*u+2],h=0;h<f;h+=1)a.push(r(c,l));return a},e}(),b=function(){var t=[],r=0,e={getBuffer:function(){return t},getAt:function(r){var e=Math.floor(r/8);return 1==(t[e]>>>7-r%8&1)},put:function(t,r){for(var n=0;n<r;n+=1)e.putBit(1==(t>>>r-n-1&1))},getLengthInBits:function(){return r},putBit:function(e){var n=Math.floor(r/8);t.length<=n&&t.push(0),e&&(t[n]|=128>>>r%8),r+=1}};return e},M=function(t){var r=a,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+2<r.length;)t.put(o(r.substring(n,n+3)),10),n+=3;n<r.length&&(r.length-n==1?t.put(o(r.substring(n,n+1)),4):r.length-n==2&&t.put(o(r.substring(n,n+2)),7))}},o=function(t){for(var r=0,e=0;e<t.length;e+=1)r=10*r+i(t.charAt(e));return r},i=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);throw"illegal char :"+t};return n},x=function(t){var r=u,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+1<r.length;)t.put(45*o(r.charAt(n))+o(r.charAt(n+1)),11),n+=2;n<r.length&&t.put(o(r.charAt(n)),6)}},o=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);if("A"<=t&&t<="Z")return t.charCodeAt(0)-"A".charCodeAt(0)+10;switch(t){case" ":return 36;case"$":return 37;case"%":return 38;case"*":return 39;case"+":return 40;case"-":return 41;case".":return 42;case"/":return 43;case":":return 44;default:throw"illegal char :"+t}};return n},m=function(r){var e=f,n=t.stringToBytes(r),o={getMode:function(){return e},getLength:function(t){return n.length},write:function(t){for(var r=0;r<n.length;r+=1)t.put(n[r],8)}};return o},L=function(r){var e=c,n=t.stringToBytesFuncs.SJIS;if(!n)throw"sjis not supported.";!function(){var t=n("友");if(2!=t.length||38726!=(t[0]<<8|t[1]))throw"sjis not supported."}();var o=n(r),i={getMode:function(){return e},getLength:function(t){return~~(o.length/2)},write:function(t){for(var r=o,e=0;e+1<r.length;){var n=(255&r[e])<<8|255&r[e+1];if(33088<=n&&n<=40956)n-=33088;else{if(!(57408<=n&&n<=60351))throw"illegal char at "+(e+1)+"/"+n;n-=49472}n=192*(n>>>8&255)+(255&n),t.put(n,13),e+=2}if(e<r.length)throw"illegal char at "+(e+1)}};return i},D=function(){var t=[],r={writeByte:function(r){t.push(255&r)},writeShort:function(t){r.writeByte(t),r.writeByte(t>>>8)},writeBytes:function(t,e,n){e=e||0,n=n||t.length;for(var o=0;o<n;o+=1)r.writeByte(t[o+e])},writeString:function(t){for(var e=0;e<t.length;e+=1)r.writeByte(t.charCodeAt(e))},toByteArray:function(){return t},toString:function(){var r="";r+="[";for(var e=0;e<t.length;e+=1)e>0&&(r+=","),r+=t[e];return r+="]"}};return r},S=function(t){var r=t,e=0,n=0,o=0,i={read:function(){for(;o<8;){if(e>=r.length){if(0==o)return-1;throw"unexpected end of file./"+o}var t=r.charAt(e);if(e+=1,"="==t)return o=0,-1;t.match(/^\s$/)||(n=n<<6|a(t.charCodeAt(0)),o+=6)}var i=n>>>o-8&255;return o-=8,i}},a=function(t){if(65<=t&&t<=90)return t-65;if(97<=t&&t<=122)return t-97+26;if(48<=t&&t<=57)return t-48+52;if(43==t)return 62;if(47==t)return 63;throw"c:"+t};return i},I=function(t,r,e){for(var n=function(t,r){var e=t,n=r,o=new Array(t*r),i={setPixel:function(t,r,n){o[r*e+t]=n},write:function(t){t.writeString("GIF87a"),t.writeShort(e),t.writeShort(n),t.writeByte(128),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(255),t.writeByte(255),t.writeByte(255),t.writeString(","),t.writeShort(0),t.writeShort(0),t.writeShort(e),t.writeShort(n),t.writeByte(0);var r=a(2);t.writeByte(2);for(var o=0;r.length-o>255;)t.writeByte(255),t.writeBytes(r,o,255),o+=255;t.writeByte(r.length-o),t.writeBytes(r,o,r.length-o),t.writeByte(0),t.writeString(";")}},a=function(t){for(var r=1<<t,e=1+(1<<t),n=t+1,i=u(),a=0;a<r;a+=1)i.add(String.fromCharCode(a));i.add(String.fromCharCode(r)),i.add(String.fromCharCode(e));var f,c,g,l=D(),h=(f=l,c=0,g=0,{write:function(t,r){if(t>>>r!=0)throw"length over";for(;c+r>=8;)f.writeByte(255&(t<<c|g)),r-=8-c,t>>>=8-c,g=0,c=0;g|=t<<c,c+=r},flush:function(){c>0&&f.writeByte(g)}});h.write(r,n);var s=0,v=String.fromCharCode(o[s]);for(s+=1;s<o.length;){var d=String.fromCharCode(o[s]);s+=1,i.contains(v+d)?v+=d:(h.write(i.indexOf(v),n),i.size()<4095&&(i.size()==1<<n&&(n+=1),i.add(v+d)),v=d)}return h.write(i.indexOf(v),n),h.write(e,n),h.flush(),l.toByteArray()},u=function(){var t={},r=0,e={add:function(n){if(e.contains(n))throw"dup key:"+n;t[n]=r,r+=1},size:function(){return r},indexOf:function(r){return t[r]},contains:function(r){return void 0!==t[r]}};return e};return i}(t,r),o=0;o<r;o+=1)for(var i=0;i<t;i+=1)n.setPixel(i,o,e(i,o));var a=D();n.write(a);for(var u=function(){var t=0,r=0,e=0,n="",o={},i=function(t){n+=String.fromCharCode(a(63&t))},a=function(t){if(t<0);else{if(t<26)return 65+t;if(t<52)return t-26+97;if(t<62)return t-52+48;if(62==t)return 43;if(63==t)return 47}throw"n:"+t};return o.writeByte=function(n){for(t=t<<8|255&n,r+=8,e+=1;r>=6;)i(t>>>r-6),r-=6},o.flush=function(){if(r>0&&(i(t<<6-r),t=0,r=0),e%3!=0)for(var o=3-e%3,a=0;a<o;a+=1)n+="="},o.toString=function(){return n},o}(),f=a.toByteArray(),c=0;c<f.length;c+=1)u.writeByte(f[c]);return u.flush(),"data:image/gif;base64,"+u};return t}();qrcode.stringToBytesFuncs["UTF-8"]=function(t){return function(t){for(var r=[],e=0;e<t.length;e++){var n=t.charCodeAt(e);n<128?r.push(n):n<2048?r.push(192|n>>6,128|63&n):n<55296||n>=57344?r.push(224|n>>12,128|n>>6&63,128|63&n):(e++,n=65536+((1023&n)<<10|1023&t.charCodeAt(e)),r.push(240|n>>18,128|n>>12&63,128|n>>6&63,128|63&n))}return r}(t)},function(t){"function"==typeof define&&define.amd?define([],t):"object"==typeof exports&&(module.exports=t())}(function(){return qrcode});
+</script>
+<script id="app-js">
+(function(){
+'use strict';
+
+/* #####################################################################
+   1. LO QUE SE PUEDE CAMBIAR FÁCIL: trámites, campos y textos
+   ##################################################################### */
+
+// Cada campo: k = nombre de la columna en la hoja; tipo = texto | telefono | area | lista | opciones | fotos | documento | galeria | nota
+const CAMPOS = {
+  nombre:        {k:'Nombre completo', tipo:'texto', ph:'Nombre(s) y apellidos', cap:'words', guardar:true},
+  grado:         {k:'Grado y grupo', tipo:'texto', ph:'Ej. 7B', mayus:true, guardar:true},
+  telefono:      {k:'Teléfono', label:'Número de teléfono', tipo:'telefono', guardar:true},
+  escuela:       {k:'Escuela', tipo:'lista', lista:'Escuelas', ph:'Escribe o elige tu escuela', guardar:true},
+  carrera:       {k:'Carrera', tipo:'lista', lista:'Carreras', ph:'Escribe o elige tu carrera', guardar:true},
+  numFoto:       {k:'Número de foto', tipo:'texto', im:'numeric', ph:'Ej. 0584', hint:'Si son varias, sepáralas con coma.'},
+  anotaciones:   {k:'Anotaciones', label:'Observaciones o anotaciones', tipo:'area', ph:'Ej. quitar aretes, retocar piel…'},
+  fotos:         {k:'Fotos', tipo:'fotos', max:5, hint:'Puedes subir de 1 a 5 fotos.'},
+  verTextos:     {tipo:'galeria', carpeta:'Textos predeterminados', texto:'Ver nuestros textos predeterminados', ajusteLink:'link de textos'},
+  tipoTexto:     {k:'Tipo de texto', label:'¿Qué prefieres?', tipo:'opciones', opciones:[['Predeterminado','Me interesa un texto predeterminado'],['Personalizado','Prefiero mandar mi texto personalizado']]},
+  numTexto:      {k:'Número de texto', label:'¿Qué texto te interesa? (escribe solo el número)', tipo:'texto', im:'numeric', ph:'Ej. 25'},
+  observaciones: {k:'Observaciones', label:'Observaciones o modificaciones que requiera el texto', tipo:'area', ph:'Ej. cambiar "A mi madre" por "A mis abuelos"'},
+  notaVarios:    {tipo:'nota', texto:'Si tienes más de un agradecimiento en tu paquete, agrégalo en el mismo documento en una segunda página por aparte.'},
+  documento:     {k:'Archivo', label:'Tu archivo', tipo:'documento', maxMB:10, hint:'1 archivo Word o PDF, máximo 10 MB. Lo guardamos con tu nombre completo automáticamente.'}
+};
+const ALUMNO = [{c:'nombre', req:1}, {c:'grado', req:1}, {c:'telefono', req:1}, {c:'escuela', req:1}, {c:'carrera', req:1}];
+const FOTO = [{c:'numFoto', req:1}, {c:'anotaciones'}];
+// hoja = nombre de la pestaña donde se guarda. Si agregas un trámite nuevo, el servidor crea su pestaña solo.
+const TRAMITES = [
+  {id:'tramite', nombre:'Foto trámite', hoja:'Foto trámite', c:'#4f46e5', t:'#ecebfd', icono:'id', desc:'Número de foto y anotaciones',
+    pasos:[{titulo:'Tus datos', campos:ALUMNO}, {titulo:'Foto trámite', campos:FOTO}]},
+  {id:'agradecimiento', nombre:'Agradecimientos', hoja:'Agradecimientos', c:'#e11d48', t:'#fde8ee', icono:'heart', desc:'Texto predeterminado o personalizado',
+    pasos:[{titulo:'Tus datos', campos:ALUMNO}, {titulo:'¿Qué texto prefieres?', campos:[
+      {c:'verTextos'}, {c:'tipoTexto', req:1},
+      {c:'numTexto', req:1, si:{tipoTexto:'Predeterminado'}}, {c:'observaciones', si:{tipoTexto:'Predeterminado'}},
+      {c:'notaVarios', si:{tipoTexto:'Personalizado'}}, {c:'documento', req:1, si:{tipoTexto:'Personalizado'}}]}]},
+  {id:'montaje', nombre:'Foto montaje', hoja:'Foto montaje', c:'#ea580c', t:'#fdeee4', icono:'layers', desc:'Sube hasta 5 fotos',
+    pasos:[{titulo:'Tus datos', campos:ALUMNO}, {titulo:'Agregar fotos', campos:[{c:'fotos', req:1}]}]},
+  {id:'estudio', nombre:'Foto estudio', hoja:'Foto estudio', c:'#0d9488', t:'#e2f5f3', icono:'camera', desc:'Número de foto y anotaciones',
+    pasos:[{titulo:'Tus datos', campos:ALUMNO}, {titulo:'Foto estudio', campos:FOTO}]},
+  {id:'lona', nombre:'Foto lona', hoja:'Foto lona', c:'#0284c7', t:'#e3f2fb', icono:'lona', desc:'Número de foto y anotaciones',
+    pasos:[{titulo:'Tus datos', campos:ALUMNO}, {titulo:'Foto lona', campos:FOTO}]},
+  {id:'extras', nombre:'Extras', hoja:'Extras', c:'#65a30d', t:'#eef6e2', icono:'sparkle', desc:'Número de foto y anotaciones',
+    pasos:[{titulo:'Tus datos', campos:ALUMNO}, {titulo:'Extras', campos:FOTO}]},
+  {id:'externos', nombre:'Externos', hoja:'Externos', c:'#475569', t:'#eaeef3', icono:'user', desc:'Si no eres de un grupo: número de foto y anotaciones',
+    pasos:[{titulo:'Tus datos', campos:[{c:'nombre', req:1}, {c:'telefono', req:1}, {c:'escuela'}, {c:'carrera'}, {c:'grado'}]}, {titulo:'Externos', campos:FOTO}]}
+];
+// Listas anteriores (solo para reconocer lo que ya estaba y migrarlo sin perder nada)
+const LISTAS_V1 = {
+  'Escuelas': ['Universidad Autónoma de Chiapas UNACH','Universidad CEPROG CEPROG','Universidad CEUSS CEUSS','Universidad de Ciencias y Artes de Chiapas UNICACH','Universidad del Sur US / UNISUR','Universidad Intercultural de Chiapas UNICH','Universidad Maya UM','Universidad Pablo Guardado Chávez UPGCH','Universidad para el Bienestar Benito Juárez García','Universidad Pedagógica Nacional UPN','Universidad Politécnica de Chiapas UPChiapas','Universidad Valle del Grijalva UVG','Instituto de Estudios Superiores de Chiapas IESCH','Instituto Tecnológico de Tuxtla Gutiérrez ITTG','ISEEECH','UP','Escuela de Terapia Física DIF'],
+  'Carreras': ['Licenciatura en Médico Cirujano','Licenciatura en Enfermería','Licenciatura en Cirujano Dentista / Odontología','Licenciatura en Químico Farmacobiólogo (QFB)','Licenciatura en Psicología','Licenciatura en Nutrición / Nutriología','Licenciatura en Fisioterapia y Rehabilitación','Licenciatura en Medicina Veterinaria y Zootecnia','Licenciatura en Trabajo Social','Licenciatura en Gerontología','Licenciatura en Salud Intercultural','Licenciatura en Medicina Integral y Salud Comunitaria','Licenciatura en Biología','Ingeniería Biomédica','Licenciatura en Lengua y Literatura Hispanoamericanas','Licenciatura en Enseñanza del Inglés / Idiomas','Licenciatura en Derechos Humanos','Licenciatura en Derecho']
+};
+
+// Listas predeterminadas (de los PDF "Universidades de Chiapas" y "Carreras"). Se pueden editar en Ajustes.
+const LISTAS_VERSION = 2;
+const LISTAS_RESPALDO = {
+  'Escuelas': ["Centro de Actualización del Magisterio","Centro de Estudios de Posgrado","Centro de Estudios Profesionales Bonampak","Centro de Estudios Profesionales de Chiapas Fray Bartolomé de las Casas","Centro de Estudios Superiores Benemérito de las Américas","Centro de Estudios Superiores de Tapachula","Centro de Estudios Superiores Frailesca","Centro de Estudios Universitarios del Estado de Chiapas","Centro de Estudios Universitarios Siglo XXI","Centro de Investigaciones y Estudios Superiores en Antropología Social","Centro Profesional Universitario","Centro Universitario Chiapas \"Dr. Manuel Velasco Suárez\"","Centro Universitario Cultural del Soconusco","Centro Universitario del Valle de Chiapas","Centro Universitario en Formación Artística","Centro Universitario Interamericano del Pacífico","Centro Universitario Mesoamericano","Cocina+Arte Universidad","Colegio Libre de Chiapas","El Colegio de la Frontera Sur","Escuela Bancaria y Comercial","Escuela de Enfermería del Estado","Escuela de Estudios Superiores de Tuxtla","Escuela de Medicina Alternativa","Escuela de Terapia Física DIF","Escuela Gestalt de Arte y Diseño de Tuxtla","Escuela Normal de Ignacio Manuel Altamirano","Escuela Normal de Licenciatura en Educación Física de Tapachula","Escuela Normal de Licenciatura en Educación Física Pedro Reynol Ozuna Henning","Escuela Normal de Licenciatura en Educación Preescolar Lic. Manuel Larráinzar","Escuela Normal de Licenciatura en Educación Preescolar Rosario Castellanos","Escuela Normal de Licenciatura en Educación Primaria de Villaflores","Escuela Normal de Licenciatura en Educación Primaria del Estado de Tuxtla Gutiérrez","Escuela Normal de Licenciatura en Educación Primaria Dr. Manuel Velasco Suárez","Escuela Normal de Licenciatura en Educación Primaria Fray Matías de Córdoba","Escuela Normal de Licenciatura en Educación Rural Mactumactzá","Escuela Normal Superior de Chiapas","Escuela Superior de Educación Física de San Cristóbal de las Casas","Escuela Superior de Tapachula","Escuela Superior de Trabajo Social Jesús Aquino Juan","Instituto de Administración Pública de Chiapas","Instituto de Ciencias y Especialidades de Chiapas","Instituto de Educación Superior en Gastronomía y Arte Culinario de Tuxtla","Instituto de Especialización para la Competitividad","Instituto de Estudios Superiores Aduanales (Universidad SEUAT)","Instituto de Estudios Superiores de Chiapas","Instituto de Estudios Superiores de Mezcalapa","Instituto de Estudios Superiores del Sureste","Instituto de Estudios Superiores Frontera Sur","Instituto de Estudios Superiores Isima","Instituto de Estudios Superiores Manuel José de Rojas","Instituto de Estudios Superiores Sor Juana Inés de la Cruz","Instituto de Estudios Superiores Tomás de Aquino","Instituto de Posgrados en Educación de Chiapas","Instituto Nacional de Estudios Fiscales","Instituto para el Desarrollo y Actualización de Profesionales","Instituto Tecnológico de Comitán","Instituto Tecnológico de Frontera Comalapa","Instituto Tecnológico de la Construcción","Instituto Tecnológico de Tapachula","Instituto Tecnológico de Tuxtla Gutiérrez","Instituto Tecnológico Superior de Cintalapa","Instituto Tecnológico y de Estudios Superiores de Monterrey","Instituto Universitario de México","Universidad Autónoma Chapingo","Universidad Autónoma de Chiapas","Universidad CEPROG","Universidad CEUSS","Universidad de Chiapas","Universidad de Ciencia y Tecnología Descartes","Universidad de Ciencias y Artes de Chiapas","Universidad de Los Altos de Chiapas","Universidad del Pacífico de Chiapas","Universidad del Soconusco","Universidad del Sur","Universidad del Sureste de México","Universidad del Tacaná","Universidad del Valle de México","Universidad IEU","Universidad Interamericana para el Desarrollo","Universidad Intercultural de Chiapas","Universidad Linda Vista","Universidad Maya","Universidad Mesoamericana","Universidad Pablo Guardado Chávez","Universidad para el Bienestar Benito Juárez García","Universidad Pedagógica Nacional","Universidad Politécnica de Chiapas","Universidad Politécnica de Tapachula","Universidad Privada del Sur de México","Universidad San Marcos","Universidad Tecnológica de la Selva","Universidad Valle del Grijalva"],
+  'Carreras': ["Licenciatura en Médico Cirujano","Licenciatura en Enfermería","Licenciatura en Cirujano Dentista / Odontología","Licenciatura en Químico Farmacobiólogo (QFB)","Licenciatura en Psicología (Clínica, Educativa e Infantil)","Licenciatura en Nutrición / Nutriología","Licenciatura en Fisioterapia y Rehabilitación","Licenciatura en Medicina Veterinaria y Zootecnia","Licenciatura en Trabajo Social","Licenciatura en Gerontología","Licenciatura en Salud Intercultural","Licenciatura en Medicina Integral y Salud Comunitaria","Licenciatura en Biología","Ingeniería Biomédica","Licenciatura en Cosmetología y Cosmiatría","Licenciatura en Derecho / Ciencias Jurídicas","Licenciatura en Criminología y Criminalística","Licenciatura en Ciencias de la Comunicación","Licenciatura en Relaciones Internacionales","Licenciatura en Sociología","Licenciatura en Antropología Social","Licenciatura en Historia","Licenciatura en Filosofía","Licenciatura en Lengua y Literatura Hispanoamericanas","Licenciatura en Enseñanza del Inglés / Idiomas","Licenciatura en Derechos Humanos","Licenciatura en Comunicación Intercultural","Licenciatura en Lengua y Cultura","Licenciatura en Arqueología","Licenciatura en Desarrollo Municipal y Gobernabilidad","Licenciatura en Ciencias Políticas y Administración Pública","Licenciatura en Periodismo","Licenciatura en Gestión para el Desarrollo y la Diversidad","Licenciatura en Justicia Social","Licenciatura en Bienestar Humano y Comunitario","Licenciatura en Educación Primaria","Licenciatura en Pedagogía","Licenciatura en Educación Preescolar","Licenciatura en Educación Física y Deportes","Licenciatura en Educación Especial / Inclusiva","Licenciatura en Educación Secundaria (diversas especialidades)","Licenciatura en Educación Bilingüe Intercultural","Licenciatura en Puericultura y Desarrollo Infantil","Licenciatura en Formación e Innovación Docente","Licenciatura en Tecnologías de la Información Aplicadas a la Educación","Licenciatura en Administración de Empresas","Licenciatura en Contaduría Pública / Finanzas","Licenciatura en Comercio e Internacionalización / Comercio Exterior","Licenciatura en Marketing Digital y Mercadotecnia","Ingeniería en Gestión Empresarial","Licenciatura en Economía","Licenciatura en Administración Turística","Ingeniería en Logística y Cadena de Suministro","Licenciatura en Finanzas y Banca","Licenciatura en Gestión de la MiPyME","Licenciatura en Publicidad y Relaciones Públicas","Licenciatura en Mercadotecnia e Innovación Comercial","Licenciatura en Negocios Digitales","Licenciatura en Gerencia Social","Licenciatura en Administración de Empresas Turísticas","Licenciatura en Desarrollo Socioeconómico","Licenciatura en Auditoría e Impuestos","Licenciatura en Comercio Electrónico","Ingeniería en Sistemas Computacionales","Ingeniería Industrial","Ingeniería en Desarrollo y Tecnologías de Software","Ingeniería Mecatrónica","Ingeniería Electrónica","Ingeniería Eléctrica","Ingeniería Mecánica","Ingeniería en Inteligencia Artificial y Ciencia de Datos","Ingeniería Informática","Ingeniería en Telecomunicaciones","Ingeniería en Ciberseguridad","Ingeniería en Manufactura Avanzada","Ingeniería en Nanotecnología","Ingeniería Ferroviaria","Ingeniería en Semiconductores","Arquitectura de Sistemas con IA Generativa","Ingeniería Química","Licenciatura en Arquitectura","Ingeniería Civil","Ingeniería Topográfica e Hidrología","Ingeniería Geomática","Licenciatura en Ciencias de la Tierra","Licenciatura en Diseño de Interiores y Urbanismo","Ingeniería en Infraestructura y Desarrollo Comunitario","Ingeniería en Geología / Geofísica","Ingeniería Agrónoma (Fitotecnia, Zootecnia, Horticultura)","Ingeniería Ambiental y Ecología","Ingeniería en Energías Renovables / Desarrollo Sostenible","Ingeniería Biotecnológica / Bioquímica","Ingeniería Agroindustrial / Industrias Alimentarias","Ingeniería Forestal","Ingeniería en Innovación Agrícola Sustentable","Licenciatura en Gastronomía / Culinaria","Licenciatura en Turismo Sustentable / Turismo Alternativo","Licenciatura en Artes Visuales y Plásticas","Licenciatura en Música / Jazz y Música Popular","Licenciatura en Artes Escénicas y Teatro"]
+};
+// Siglas de cada escuela (sirven para autorrellenar: escribes UNACH y se pone el nombre completo)
+const SIGLAS_ESCUELAS = {"Centro de Actualización del Magisterio":"CAM","Centro de Estudios de Posgrado":"CEP","Centro de Estudios Profesionales de Chiapas Fray Bartolomé de las Casas":"CEPFBC","Centro de Estudios Superiores Benemérito de las Américas":"CESBA","Centro de Estudios Superiores de Tapachula":"CEST","Centro de Estudios Superiores Frailesca":"CESF","Centro de Estudios Universitarios del Estado de Chiapas":"CEUCH / CEUECH","Centro de Estudios Universitarios Siglo XXI":"CEU Siglo XXI","Centro de Investigaciones y Estudios Superiores en Antropología Social":"CIESAS","Centro Profesional Universitario":"CPU","Centro Universitario Chiapas \"Dr. Manuel Velasco Suárez\"":"CUCH","Centro Universitario Cultural del Soconusco":"CUCS","Centro Universitario del Valle de Chiapas":"CUVACH","Centro Universitario en Formación Artística":"CUFA","Centro Universitario Interamericano del Pacífico":"CUIP","Centro Universitario Mesoamericano":"CUM","Cocina+Arte Universidad":"Cocina+Arte","Colegio Libre de Chiapas":"CLC","El Colegio de la Frontera Sur":"ECOSUR","Escuela Bancaria y Comercial":"EBC","Escuela de Enfermería del Estado":"EEE","Escuela de Estudios Superiores de Tuxtla":"EEST","Escuela de Medicina Alternativa":"EMA","Escuela Gestalt de Arte y Diseño de Tuxtla":"EGAD","Escuela Normal de Ignacio Manuel Altamirano":"NIMA","Escuela Normal de Licenciatura en Educación Física de Tapachula":"ENLEF Tapachula","Escuela Normal de Licenciatura en Educación Física Pedro Reynol Ozuna Henning":"ENLEF Tuxtla / ENLEF","Escuela Normal de Licenciatura en Educación Preescolar Lic. Manuel Larráinzar":"ENLEP Larráinzar","Escuela Normal de Licenciatura en Educación Preescolar Rosario Castellanos":"ENLEP Rosario Castellanos","Escuela Normal de Licenciatura en Educación Primaria de Villaflores":"ENLEP Villaflores","Escuela Normal de Licenciatura en Educación Primaria del Estado de Tuxtla Gutiérrez":"ENLEPE","Escuela Normal de Licenciatura en Educación Primaria Dr. Manuel Velasco Suárez":"ENLEP Dr. Manuel Velasco Suárez","Escuela Normal de Licenciatura en Educación Primaria Fray Matías de Córdoba":"ENLEP Fray Matías de Córdoba","Escuela Normal de Licenciatura en Educación Rural Mactumactzá":"ENLE R Mactumactzá","Escuela Normal Superior de Chiapas":"ENSCH","Escuela Superior de Educación Física de San Cristóbal de las Casas":"ESEF","Escuela Superior de Tapachula":"EST","Escuela Superior de Trabajo Social Jesús Aquino Juan":"ESTS / ESTSJAJ","Instituto de Administración Pública de Chiapas":"IAP Chiapas","Instituto de Ciencias y Especialidades de Chiapas":"ICECH","Instituto de Especialización para la Competitividad":"IEC","Instituto de Estudios Superiores Aduanales (Universidad SEUAT)":"SEUAT","Instituto de Estudios Superiores de Chiapas":"IESCH","Instituto de Estudios Superiores de Mezcalapa":"IESM","Instituto de Estudios Superiores del Sureste":"IESS","Instituto de Estudios Superiores Frontera Sur":"IESFS","Instituto de Estudios Superiores Isima":"ISIMA","Instituto de Estudios Superiores Manuel José de Rojas":"IESMJR","Instituto de Estudios Superiores Sor Juana Inés de la Cruz":"IESSJIC","Instituto de Estudios Superiores Tomás de Aquino":"IESTA","Instituto de Posgrados en Educación de Chiapas":"IPECH","Instituto Nacional de Estudios Fiscales":"INEF","Instituto para el Desarrollo y Actualización de Profesionales":"IDAP","Instituto Tecnológico de Comitán":"ITComitán / TecNM Comitán","Instituto Tecnológico de Frontera Comalapa":"ITFC / TecNM Frontera Comalapa","Instituto Tecnológico de la Construcción":"ITC","Instituto Tecnológico de Tapachula":"ITT / TecNM Tapachula","Instituto Tecnológico de Tuxtla Gutiérrez":"ITTG / TecNM Tuxtla Gutiérrez","Instituto Tecnológico Superior de Cintalapa":"ITSC / TecNM Cintalapa","Instituto Tecnológico y de Estudios Superiores de Monterrey":"ITESM / Tec de Monterrey","Instituto Universitario de México":"IUM","Universidad Autónoma Chapingo":"UACH","Universidad Autónoma de Chiapas":"UNACH","Universidad CEPROG":"CEPROG","Universidad CEUSS":"CEUSS","Universidad de Chiapas":"UDECH","Universidad de Ciencia y Tecnología Descartes":"Universidad Descartes","Universidad de Ciencias y Artes de Chiapas":"UNICACH","Universidad de Los Altos de Chiapas":"UACH","Universidad del Pacífico de Chiapas":"UPACH","Universidad del Soconusco":"UDS","Universidad del Sur":"US / UNISUR","Universidad del Sureste de México":"USM","Universidad del Tacaná":"UTAC","Universidad del Valle de México":"UVM","Universidad IEU":"IEU","Universidad Interamericana para el Desarrollo":"UNID","Universidad Intercultural de Chiapas":"UNICH","Universidad Linda Vista":"ULV","Universidad Maya":"UM","Universidad Mesoamericana":"UMA","Universidad Pablo Guardado Chávez":"UPGCH","Universidad para el Bienestar Benito Juárez García":"UBBJG","Universidad Pedagógica Nacional":"UPN","Universidad Politécnica de Chiapas":"UPChiapas","Universidad Politécnica de Tapachula":"UPTapachula","Universidad Privada del Sur de México":"UPSUM","Universidad San Marcos":"USM / USANMARCOS","Universidad Tecnológica de la Selva":"UT Selva","Universidad Valle del Grijalva":"UVG"};
+
+/* #####################################################################
+   2. CONFIGURACIÓN TÉCNICA
+   ##################################################################### */
+const APP = 'Pixel Arte Registros';
+const NOMBRE_HOJA = 'Registros Pixel Arte';
+const NOMBRE_CARPETA = 'Pixel Arte - Registros';
+const SERVIDOR_MINIMO = 3, SERVIDOR_RECOMENDADO = 4;
+const CLIENT_ID_FIJO = String((window.PIXEL_ARTE && window.PIXEL_ARTE.clientId) || '').trim();   // Opcional: solo para entrar con Google desde el navegador. Se pone en config.js. El APK no lo necesita.
+const SCOPES = 'https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/userinfo.email';
+const SHEETS = 'https://sheets.googleapis.com/v4/spreadsheets';
+const DRIVE = 'https://www.googleapis.com/drive/v3';
+const PUENTE = window.PixelArteRegistrosAndroid || null;
+const EN_APK = !!PUENTE;
+const SCRIPT = String((window.PIXEL_ARTE && window.PIXEL_ARTE.script) || '').trim();
+const SCRIPT_OK = /^https:\/\/script\.google\.com\/macros\/s\/[-\w]+\/exec$/.test(SCRIPT);
+const ESTADOS = ['Pendiente','Listo','Entregado'];
+const FIJAS = ['Folio','Fecha','Archivos','Estado','ID'];
+const ESPECIALES = ['Ajustes','Listas'];
+const AJ = {negocio:'Nombre del negocio', pin:'PIN del panel', linkTextos:'Link de textos predeterminados (opcional)', linkQR:'Link para clientes (QR)'};
+const MAX_FOTO_MB = 30, COMPRIMIR_MB = 4, LADO_MAX = 4096;
+
+/* #####################################################################
+   3. ÍCONOS Y UTILIDADES
+   ##################################################################### */
+const I = {
+  id:'<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M5.5 16.5c.8-1.6 2.1-2.3 3.5-2.3s2.7.7 3.5 2.3"/><path d="M15 10h3.5M15 13.5h2.5"/>',
+  heart:'<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.1a4.3 4.3 0 0 1 7.5 2.7C19.5 15.4 12 20 12 20z"/>',
+  layers:'<rect x="7" y="3" width="14" height="14" rx="2"/><path d="M3 7.5V19a2 2 0 0 0 2 2h11.5"/><circle cx="12" cy="8" r="1.6"/><path d="M21 13.5l-4-4-7.5 7.5"/>',
+  camera:'<path d="M4 8h3l1.8-2.6h6.4L17 8h3a1 1 0 0 1 1 1v9.5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.3" r="3.4"/>',
+  lona:'<rect x="2.5" y="4" width="19" height="11.5" rx="1.2"/><path d="M7 15.5V20M17 15.5V20"/><path d="M6 12.5l3.5-3.5 2.5 2.5 2-2 3.5 3"/>',
+  sparkle:'<path d="M11 3l1.8 5.2L18 10l-5.2 1.8L11 17l-1.8-5.2L4 10l5.2-1.8z"/><path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8z"/>',
+  user:'<circle cx="9.5" cy="8" r="3.6"/><path d="M3 20.5c.8-3.7 3.3-5.8 6.5-5.8s5.7 2.1 6.5 5.8"/><path d="M18 7.5h5M20.5 5v5"/>',
+  lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/>',
+  back:'<path d="M15 5l-7 7 7 7"/>', check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>', x:'<path d="M6 6l12 12M18 6L6 18"/>',
+  trash:'<path d="M4 7h16M10 11v6M14 11v6M6 7l1 12.5a1.5 1.5 0 0 0 1.5 1.5h7a1.5 1.5 0 0 0 1.5-1.5L18 7M9 7V4.5h6V7"/>',
+  upload:'<path d="M12 16V5M7 9.5l5-5 5 5M5 20h14"/>', plus:'<path d="M12 5v14M5 12h14"/>',
+  search:'<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/>',
+  file:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>',
+  image:'<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M21 16l-5-5-9 9"/>',
+  chat:'<path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12z"/>',
+  phone:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
+  sync:'<path d="M20 11a8 8 0 0 0-14.3-4.3L4 9M4 4v5h5M4 13a8 8 0 0 0 14.3 4.3L20 15M20 20v-5h-5"/>',
+  gear:'<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="17" r="2.2"/>',
+  qr:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h4v4h-4"/>',
+  sheet:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16M4 15h16M10 9v12"/>',
+  folder:'<path d="M3 6.5A1.5 1.5 0 0 1 4.5 5H9l2 2.5h8.5A1.5 1.5 0 0 1 21 9v9.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/>',
+  ext:'<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
+  download:'<path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/>',
+  print:'<path d="M7 9V3h10v6M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><rect x="7" y="14" width="10" height="7" rx="1"/>',
+  logout:'<path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l5-5-5-5M15 12H4"/>',
+  form:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/>',
+  book:'<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/>',
+  edit:'<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>'
+};
+const ico = (n, s) => `<svg class="ic" width="${s||22}" height="${s||22}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[n]||I.file}</svg>`;
+const GLOGO = '<svg width="22" height="22" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>';
+
+const $ = (s, r) => (r||document).querySelector(s);
+const $$ = (s, r) => Array.from((r||document).querySelectorAll(s));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clean = s => String(s == null ? '' : s).replace(/\s+/g, ' ').trim();
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const safeUrl = u => /^https:\/\//.test(String(u || '')) ? String(u) : '';
+const fileSafe = s => String(s || '').replace(/[\\/:*?"<>|#%]+/g, '').replace(/\s+/g, ' ').trim();
+const tam = b => b < 1048576 ? Math.max(1, Math.round(b / 1024)) + ' KB' : (b / 1048576).toFixed(1) + ' MB';
+const qn = t => `'${String(t).replace(/'/g, "''")}'`;
+const enc = encodeURIComponent;
+function colLetra(n){ let s = ''; while (n > 0){ const m = (n - 1) % 26; s = String.fromCharCode(65 + m) + s; n = Math.floor((n - 1) / 26); } return s; }
+let toastT = null;
+function toast(msg, ms){ const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), ms || 2800); }
+function aviso(msg){ if (PUENTE && PUENTE.aviso) { try { PUENTE.aviso(msg); return; } catch(e){} } toast(msg); }
+function abrir(url){ if (!url) return; if (PUENTE && PUENTE.abrir) { try { PUENTE.abrir(url); return; } catch(e){} } window.open(url, '_blank', 'noopener'); }
+function imprimir(){ if (PUENTE && PUENTE.imprimir) { PUENTE.imprimir(); return; } window.print(); }
+function b64DeTexto(s){ return btoa(unescape(encodeURIComponent(s))); }
+function guardarArchivo(nombre, mime, base64){
+  if (PUENTE && PUENTE.guardarArchivo) { PUENTE.guardarArchivo(nombre, mime, base64); return; }
+  const bin = atob(base64), u8 = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([u8], {type:mime})); a.download = nombre;
+  document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 4000);
+  toast('Descargando ' + nombre);
+}
+function almacen(tipo){
+  const st = tipo === 'sesion' ? window.sessionStorage : window.localStorage;
+  return {
+    get(k){ try { return st.getItem('pa.' + k); } catch(e){ return null; } },
+    set(k, v){ try { st.setItem('pa.' + k, v); } catch(e){} },
+    del(k){ try { st.removeItem('pa.' + k); } catch(e){} }
+  };
+}
+const LS = almacen('local'), SS = almacen('sesion');
+const PIN_STORE = EN_APK ? LS : SS;   // en el APK se recuerda; en el navegador solo mientras está abierta la pestaña
+function limpiarSesion(){
+  try { Object.keys(localStorage).filter(k => /^pa\.(token|sesion|via|pin|hoja\.)/.test(k)).forEach(k => localStorage.removeItem(k)); } catch(e){}
+  SS.del('pin');
+}
+function extOf(name, type){
+  const m = /\.([a-z0-9]{2,5})$/i.exec(name || ''); if (m) return m[1].toLowerCase();
+  return ({'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/heic':'heic','application/pdf':'pdf','application/msword':'doc','application/vnd.openxmlformats-officedocument.wordprocessingml.document':'docx'})[type] || 'jpg';
+}
+function mimeOf(name, type){
+  if (type) return type;
+  return ({pdf:'application/pdf', doc:'application/msword', docx:'application/vnd.openxmlformats-officedocument.wordprocessingml.document', png:'image/png', webp:'image/webp', heic:'image/heic'})[extOf(name, '')] || 'image/jpeg';
+}
+function toB64(file){ return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(String(r.result).split(',')[1] || ''); r.onerror = () => rej(r.error); r.readAsDataURL(file); }); }
+// Fotos pesadas (más de 4 MB) se reducen a 4096 px por lado en calidad alta (alcanza para imprimir ~34 cm a 300 dpi).
+// Así suben mucho más rápido con datos móviles. Si algo falla, se manda la foto original.
+async function prepImage(file){
+  if (!/^image\/(jpeg|png|webp)$/.test(file.type) || file.size <= COMPRIMIR_MB * 1048576) return file;
+  let img = null, url = null, c = null;
+  try {
+    if (window.createImageBitmap) { try { img = await createImageBitmap(file, {imageOrientation:'from-image'}); } catch(e){ img = null; } }
+    if (!img) { url = URL.createObjectURL(file); img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = url; }); }
+    const w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+    if (!w || !h) return file;
+    const k = Math.min(1, LADO_MAX / Math.max(w, h));
+    c = document.createElement('canvas'); c.width = Math.round(w * k); c.height = Math.round(h * k);
+    const ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height); ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(img, 0, 0, c.width, c.height);
+    const blob = await new Promise(res => c.toBlob(res, 'image/jpeg', 0.9));
+    if (blob && blob.size > 1000 && blob.size < file.size) {
+      const nombre = (file.name || 'foto').replace(/\.\w+$/, '') + '.jpg';
+      try { return new File([blob], nombre, {type:'image/jpeg'}); } catch(e){ blob.name = nombre; return blob; }
+    }
+  } catch(e){}
+  finally { if (url) URL.revokeObjectURL(url); if (img && img.close) img.close(); if (c) { c.width = 0; c.height = 0; } }
+  return file;
+}
+// Vista previa: una sola URL por archivo (no se vuelve a decodificar la foto en cada pantalla)
+function prevUrl(f){ if (!f.prev) { try { f.prev = URL.createObjectURL(f.file); } catch(e){ f.prev = ''; } } return f.prev; }
+function soltarArchivos(lst){ (lst || []).forEach(f => { if (f && f.prev) { try { URL.revokeObjectURL(f.prev); } catch(e){} f.prev = null; } }); }
+function soltarTodos(){ Object.keys(S.files || {}).forEach(k => soltarArchivos(S.files[k])); }
+
+/* Borrador: si el celular cierra la página a medio registro (pasa mucho al abrir la cámara o la galería),
+   al volver se recupera lo que ya se había escrito y las fotos elegidas. */
+const BORRADOR_HORAS = 6;
+const SID = (() => { let s = SS.get('sid'); if (!s) { s = uid(); SS.set('sid', s); } return s; })();
+const DUENO_BORRADOR = EN_APK ? 'apk' : SID;
+let idbP = null;
+function abrirIDB(){
+  if (!idbP) {
+    idbP = new Promise((res, rej) => {
+      try { const r = indexedDB.open('pixelarte', 1); r.onupgradeneeded = () => r.result.createObjectStore('kv'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); r.onblocked = () => rej(new Error('bloqueado')); }
+      catch(e){ rej(e); }
+    });
+    idbP.catch(() => {});
+  }
+  return idbP;
+}
+async function idbOp(modo, fn){
+  const db = await abrirIDB();
+  return new Promise((res, rej) => {
+    const tx = db.transaction('kv', modo), st = tx.objectStore('kv'); let out;
+    const rq = fn(st); if (rq) rq.onsuccess = () => { out = rq.result; };
+    tx.oncomplete = () => res(out); tx.onerror = () => rej(tx.error); tx.onabort = () => rej(tx.error);
+  });
+}
+const idbGet = k => idbOp('readonly', st => st.get(k));
+const idbPut = (k, v) => idbOp('readwrite', st => st.put(v, k));
+const idbDel = k => idbOp('readwrite', st => st.delete(k));
+let borradorT = null;
+function guardarBorrador(conArchivos){
+  clearTimeout(borradorT);
+  if (conArchivos) guardarArchivosBorrador();
+  borradorT = setTimeout(guardarTextoBorrador, 300);
+}
+function borradorActivo(){ return S.modo === 'cliente' && S.vista === 'form' && !!S.tramite; }
+function guardarTextoBorrador(){
+  if (!borradorActivo()) return;
+  const b = {dueno:DUENO_BORRADOR, t:Date.now(), tramite:S.tramite, paso:S.paso, val:S.val, reqId:S.reqId};
+  try { SS.set('borrador', JSON.stringify(b)); } catch(e){}
+  idbPut('borrador', b).catch(() => {});
+}
+function guardarArchivosBorrador(){
+  if (!borradorActivo()) return;
+  const files = {}; Object.keys(S.files).forEach(k => { files[k] = S.files[k].map(f => ({file:f.file, name:f.name, size:f.size, url:f.url || null, uid:f.uid || null})); });
+  idbPut('borradorArchivos', {dueno:DUENO_BORRADOR, t:Date.now(), files}).catch(() => {});
+}
+function borrarBorrador(){ clearTimeout(borradorT); SS.del('borrador'); idbDel('borrador').catch(() => {}); idbDel('borradorArchivos').catch(() => {}); }
+async function recuperarBorrador(){
+  let b = null, a = null;
+  try { b = await idbGet('borrador'); } catch(e){}
+  if (!b) { try { b = JSON.parse(SS.get('borrador') || 'null'); } catch(e){} }
+  if (!b) return false;
+  const viejo = Date.now() - (b.t || 0) > BORRADOR_HORAS * 3600000;
+  if (viejo) { borrarBorrador(); return false; }
+  if (b.dueno !== DUENO_BORRADOR || !TRAMITES.some(t => t.id === b.tramite)) return false;
+  if (S.modo !== 'cliente' || S.vista !== 'inicio' || S.sending) return false;   // ya está haciendo otra cosa
+  try { a = await idbGet('borradorArchivos'); } catch(e){}
+  S.tramite = b.tramite; S.val = b.val || {}; S.reqId = b.reqId || null; S.keep = false;
+  S.paso = Math.max(0, Math.min(b.paso | 0, tramite().pasos.length));
+  S.files = {};
+  if (a && a.dueno === DUENO_BORRADOR && a.files) Object.keys(a.files).forEach(k => {
+    S.files[k] = (a.files[k] || []).filter(f => f && f.file).map(f => ({file:f.file, name:f.name, size:f.size, url:f.url || null, uid:f.uid || null}));
+  });
+  S.vista = 'form'; push(); render(true);
+  toast('Recuperamos tu registro donde te quedaste.', 3500);
+  return true;
+}
+function hash(s){ let h = 2166136261; for (let i = 0; i < s.length; i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(36); }
+const VERSION = hash(($('#app-js') || {}).textContent || '');
+const ORIGEN = /github\.io$/.test(location.hostname) ? 'desde GitHub' : (location.hostname === 'appassets.androidplatform.net' ? 'copia interna' : (location.protocol === 'file:' ? 'archivo' : location.hostname));
+function urlPagina(){
+  if (!/^https?:$/.test(location.protocol) || location.hostname === 'appassets.androidplatform.net') return '';
+  return location.origin + location.pathname.replace(/index\.html$/, '');
+}
+
+/* #####################################################################
+   4. SERVIDOR DE GOOGLE (Apps Script): clientes y panel con PIN
+   ##################################################################### */
+// Tiempo máximo de espera: si la red se queda colgada, se corta y se reintenta (la app nunca se queda "pensando" para siempre)
+const TIEMPO = {get:25000, post:60000, subir:150000, google:45000};
+if (window.__tiempos) Object.assign(TIEMPO, window.__tiempos);   // solo lo usan las pruebas automáticas
+function errorRed(tipo){
+  const e = new Error(tipo === 'tiempo' ? 'El servidor tardó demasiado en responder.' : (navigator.onLine === false ? 'Sin internet. Revisa tu conexión.' : 'No se pudo conectar. Revisa tu internet.'));
+  e.red = true; e.tiempo = tipo === 'tiempo'; return e;
+}
+async function pedir(url, opts, ms){
+  const ctl = typeof AbortController === 'function' ? new AbortController() : null;
+  const t = ctl ? setTimeout(() => ctl.abort(), ms) : null;
+  try { return await fetch(url, Object.assign({}, opts, ctl ? {signal:ctl.signal} : {})); }
+  catch(e){ throw errorRed(e && e.name === 'AbortError' ? 'tiempo' : 'red'); }
+  finally { if (t) clearTimeout(t); }
+}
+async function srvLeer(r){
+  const txt = await r.text();
+  let j = null; try { j = JSON.parse(txt); } catch(e){}
+  if (!j || typeof j !== 'object') {
+    const ocupado = r.status >= 500 || r.status === 429;
+    const e = new Error(ocupado ? 'Google está ocupado en este momento.' : 'El servidor respondió algo raro. Revisa que el script esté implementado con acceso para "Cualquier persona".');
+    e.reintentar = ocupado; throw e;
+  }
+  if (!j.ok) {
+    const msg = j.error || 'Error del servidor', e = new Error(msg);
+    e.servidor = true; e.reintentar = !!j.reintentar;
+    e.codigo = j.codigo || (/PIN incorrecto/i.test(msg) ? 'pin' : (/Demasiados intentos/i.test(msg) ? 'bloqueo' : ''));
+    throw e;
+  }
+  return j;
+}
+// Reintenta solo lo que vale la pena reintentar (red, Google ocupado, servidor saturado), con esperas crecientes
+async function conReintentos(fn, max){
+  for (let i = 0; ; i++) {
+    try { return await fn(i); }
+    catch(e){
+      const sePuede = (e.red && !(e.tiempo && i >= 1)) || e.reintentar;
+      if (!sePuede || i >= max - 1) throw e;
+      await sleep(Math.min(8000, 700 * Math.pow(2, i)) + Math.random() * 400);
+    }
+  }
+}
+function srvGet(params){
+  if (!SCRIPT_OK) return Promise.reject(new Error('Falta pegar el link de tu servidor en config.js.'));
+  const url = SCRIPT + '?' + Object.keys(params).map(k => enc(k) + '=' + enc(params[k])).join('&');
+  return conReintentos(() => pedir(url, {}, TIEMPO.get).then(srvLeer), 3);
+}
+function srvPost(accion, datos){
+  if (!SCRIPT_OK) return Promise.reject(new Error('Falta pegar el link de tu servidor en config.js.'));
+  const body = JSON.stringify(Object.assign({accion}, datos || {}));
+  // enviar y subir se pueden repetir sin duplicar (el servidor reconoce el mismo envío), por eso se insiste más
+  const importante = accion === 'enviar' || accion === 'subir';
+  return conReintentos(() => pedir(SCRIPT, {method:'POST', body}, accion === 'subir' ? TIEMPO.subir : TIEMPO.post).then(srvLeer), importante ? 5 : 3);
+}
+
+/* #####################################################################
+   5. INICIO DE SESIÓN CON GOOGLE (APK o navegador) Y API DE GOOGLE
+   ##################################################################### */
+let tokenActual = null, tokenExp = 0, tokenPromesa = null;
+const pendientes = {};
+window.gxNativo = function(id, token, error){
+  const p = pendientes[id]; if (!p) return; delete pendientes[id];
+  if (error) p.rej(new Error(errorAndroid(String(error)))); else p.res(String(token || ''));
+};
+function errorAndroid(e){
+  if (/^10:|DEVELOPER_ERROR/i.test(e)) return 'Google todavía no reconoce esta app (código 10). Falta la configuración opcional de Google del LEEME. Mientras, entra con tu PIN.';
+  if (/^16:|^12501|cancel/i.test(e)) return 'Se cerró la ventana de Google. Intenta otra vez.';
+  if (/^7:|network/i.test(e)) return 'Sin internet. Revisa tu conexión e intenta de nuevo.';
+  return 'No se pudo iniciar sesión con Google: ' + e;
+}
+function pedirTokenNativo(viejo){
+  return new Promise((res, rej) => {
+    const id = 't' + uid(); pendientes[id] = {res, rej};
+    try { PUENTE.pedirToken(id, viejo || ''); } catch(e){ delete pendientes[id]; rej(e); }
+  });
+}
+function cargarGIS(){
+  return new Promise((res, rej) => {
+    if (window.google && google.accounts && google.accounts.oauth2) return res();
+    const s = document.createElement('script'); s.src = 'https://accounts.google.com/gsi/client'; s.async = true;
+    s.onload = () => res(); s.onerror = () => rej(new Error('Sin internet.')); document.head.appendChild(s);
+  });
+}
+async function pedirTokenWeb(){
+  if (!CLIENT_ID_FIJO) throw new Error('Para entrar con Google desde el navegador hay que configurar un CLIENT_ID (opcional, ver LEEME). Entra con tu PIN.');
+  await cargarGIS();
+  return new Promise((res, rej) => {
+    const c = google.accounts.oauth2.initTokenClient({client_id:CLIENT_ID_FIJO, scope:SCOPES,
+      callback: r => r && r.access_token ? res({token:r.access_token, exp:Date.now() + (Number(r.expires_in) || 3600) * 1000}) : rej(new Error((r && (r.error_description || r.error)) || 'No se pudo iniciar sesión')),
+      error_callback: e => rej(new Error(e && e.type === 'popup_closed' ? 'Se cerró la ventana de Google.' : 'No se pudo abrir la ventana de Google.'))});
+    c.requestAccessToken({prompt:''});
+  });
+}
+function guardarToken(t, exp){ tokenActual = t; tokenExp = exp; LS.set('token', JSON.stringify({t, exp})); }
+(function(){ try { const x = JSON.parse(LS.get('token') || 'null'); if (x && x.t) { tokenActual = x.t; tokenExp = x.exp || 0; } } catch(e){} })();
+function token(forzar){
+  if (!forzar && tokenActual && Date.now() < tokenExp - 60000) return Promise.resolve(tokenActual);
+  if (tokenPromesa) return tokenPromesa;
+  tokenPromesa = (async () => {
+    if (PUENTE) { const t = await pedirTokenNativo(forzar ? tokenActual : ''); if (!t) throw new Error('Google no devolvió el permiso.'); guardarToken(t, Date.now() + 50 * 60000); }
+    else { const r = await pedirTokenWeb(); guardarToken(r.token, r.exp); }
+    return tokenActual;
+  })();
+  tokenPromesa.then(() => { tokenPromesa = null; }, () => { tokenPromesa = null; });
+  return tokenPromesa;
+}
+function mensajeError(status, j){
+  const e = (j && j.error) || {}, msg = String(e.message || '');
+  const razon = ((e.errors || [])[0] || {}).reason || ((e.details || []).find(d => d.reason) || {}).reason || '';
+  if (status === 403 && /has not been used|is disabled|SERVICE_DISABLED|accessNotConfigured/i.test(msg + razon))
+    return (/drive/i.test(msg) ? 'La API de Google Drive' : (/sheets/i.test(msg) ? 'La API de Google Sheets' : 'Una API de Google')) + ' no está habilitada en tu proyecto de Google Cloud. Habilítala y espera unos minutos.';
+  if (status === 403 && /insufficient|scope|ACCESS_TOKEN_SCOPE_INSUFFICIENT/i.test(msg + razon)) return 'Falta el permiso de Drive. Cierra sesión y vuelve a entrar aceptando todos los permisos.';
+  if (status === 404) return 'No encontré la hoja o el archivo. Revisa el link de la hoja en Ajustes.';
+  if (status === 403) return 'Google no dio permiso: ' + (msg || 'acceso denegado') + '.';
+  return msg || ('Google respondió con un error (' + status + ').');
+}
+async function gfetch(url, opts, intento){
+  opts = opts || {}; intento = intento || 0;
+  const t = await token(false);
+  const headers = Object.assign({Authorization:'Bearer ' + t}, opts.body && typeof opts.body === 'string' ? {'Content-Type':'application/json'} : {}, opts.headers || {});
+  let r;
+  try { r = await pedir(url, Object.assign({}, opts, {headers}), TIEMPO.google); }
+  catch(e){ if (intento < 2 && !(e.tiempo && intento >= 1)) { await sleep(700 * (intento + 1)); return gfetch(url, opts, intento + 1); } throw e; }
+  if (r.status === 401 && !opts._renovado) { await token(true); return gfetch(url, Object.assign({}, opts, {_renovado:true}), intento); }
+  if ((r.status === 429 || r.status >= 500) && intento < 4) { await sleep(600 * Math.pow(2, intento) + Math.random() * 300); return gfetch(url, opts, intento + 1); }
+  if (!r.ok) {
+    let j = null; try { j = await r.json(); } catch(e){}
+    const err = new Error(mensajeError(r.status, j)); err.status = r.status;
+    err.config = /no está habilitada|Falta el permiso/.test(err.message);
+    throw err;
+  }
+  if (r.status === 204) return null;
+  const txt = await r.text(); return txt ? JSON.parse(txt) : null;
+}
+async function buscarEnDrive(q){
+  const r = await gfetch(`${DRIVE}/files?q=${enc(q)}&fields=${enc('files(id,name,modifiedTime)')}&orderBy=${enc('modifiedTime desc')}&pageSize=10&spaces=drive`);
+  return (r && r.files) || [];
+}
+async function carpetaPrincipal(crear){
+  const ya = await buscarEnDrive(`name='${NOMBRE_CARPETA}' and mimeType='application/vnd.google-apps.folder' and 'me' in owners and trashed=false`);
+  if (ya.length) return ya[0].id;
+  if (!crear) return '';
+  const c = await gfetch(`${DRIVE}/files?fields=id`, {method:'POST', body:JSON.stringify({name:NOMBRE_CARPETA, mimeType:'application/vnd.google-apps.folder'})});
+  return c.id;
+}
+async function leerMeta(id){ return gfetch(`${SHEETS}/${id}?fields=${enc('spreadsheetId,properties.title,sheets.properties(sheetId,title,gridProperties(rowCount,columnCount))')}`); }
+async function encontrarHoja(){
+  const clave = 'hoja.' + S.correo, guardada = LS.get(clave);
+  if (guardada) {
+    try { await leerMeta(guardada); return guardada; }
+    catch(e){ if (e.config || (e.status !== 404 && e.status !== 403)) throw e; LS.del(clave); }
+  }
+  const ya = await buscarEnDrive(`name='${NOMBRE_HOJA}' and mimeType='application/vnd.google-apps.spreadsheet' and 'me' in owners and trashed=false`);
+  const id = ya.length ? ya[0].id : await crearHoja();
+  LS.set(clave, id);
+  return id;
+}
+function celda(v, cabeza){
+  const c = {userEnteredValue:{stringValue:String(v)}};
+  if (cabeza) c.userEnteredFormat = {backgroundColor:{red:0x24/255, green:0x13/255, blue:0x5f/255}, textFormat:{bold:true, foregroundColor:{red:1, green:1, blue:1}}};
+  return c;
+}
+const filasCeldas = arr => arr.map((r, i) => ({values:r.map(v => celda(v, i === 0))}));
+async function crearHoja(){
+  const listas = Object.keys(LISTAS_RESPALDO), n = Math.max(...listas.map(k => LISTAS_RESPALDO[k].length)), li = [listas];
+  for (let i = 0; i < n; i++) li.push(listas.map(k => LISTAS_RESPALDO[k][i] || ''));
+  const ss = await gfetch(SHEETS, {method:'POST', body:JSON.stringify({properties:{title:NOMBRE_HOJA, locale:'es_MX', timeZone:'America/Mexico_City'}, sheets:[
+    {properties:{sheetId:100, title:'Ajustes'}, data:[{startRow:0, startColumn:0, rowData:filasCeldas([['Ajuste','Valor'], [AJ.negocio,'Pixel Arte'], [AJ.pin,'1234'], [AJ.linkTextos,''], [AJ.linkQR,'']])}]},
+    {properties:{sheetId:101, title:'Listas', gridProperties:{frozenRowCount:1}}, data:[{startRow:0, startColumn:0, rowData:filasCeldas(li)}]}
+  ]})});
+  const req = [[100,0,300],[100,1,340],[101,0,380],[101,1,380]].map(([sheetId, i, px]) => ({updateDimensionProperties:{range:{sheetId, dimension:'COLUMNS', startIndex:i, endIndex:i + 1}, properties:{pixelSize:px}, fields:'pixelSize'}}));
+  await gfetch(`${SHEETS}/${ss.spreadsheetId}:batchUpdate`, {method:'POST', body:JSON.stringify({requests:req})});
+  try {
+    const carpeta = await carpetaPrincipal(true);
+    const f = await gfetch(`${DRIVE}/files/${ss.spreadsheetId}?fields=parents`);
+    await gfetch(`${DRIVE}/files/${ss.spreadsheetId}?addParents=${carpeta}&removeParents=${enc((f.parents || []).join(','))}&fields=id`, {method:'PATCH', body:'{}'});
+  } catch(e){ console.warn('No se pudo mover la hoja a la carpeta', e); }
+  aviso('Creé la hoja "' + NOMBRE_HOJA + '" en tu Drive');
+  return ss.spreadsheetId;
+}
+function relleno(vals){ const w = Math.max(0, ...vals.map(r => r.length)); return vals.map(r => { const x = r.slice(); while (x.length < w) x.push(''); return x.map(v => v == null ? '' : String(v)); }); }
+function listasDe(vals){
+  const out = {};
+  (vals[0] || []).forEach((h, j) => { h = String(h).trim(); if (!h) return; const seen = {}; out[h] = vals.slice(1).map(r => String(r[j] || '').trim()).filter(x => { if (!x || seen[x] || /^no se encuentra/i.test(x)) return false; seen[x] = 1; return true; }); });
+  return out;
+}
+async function leerPestana(titulo){
+  const r = await gfetch(`${SHEETS}/${S.hoja}/values/${enc(qn(titulo))}?valueRenderOption=FORMATTED_VALUE`);
+  return relleno((r && r.values) || []);
+}
+function hojaMeta(titulo){ const s = ((S.meta && S.meta.sheets) || []).find(x => x.properties.title === titulo); if (!s) throw new Error('No existe la pestaña ' + titulo + '. Toca Actualizar.'); return s.properties; }
+async function ubicar(hoja, id, fila, folio){
+  const vals = await leerPestana(hoja), head = (vals[0] || []).map(h => String(h).trim()), cols = {};
+  head.forEach((h, j) => { if (h) cols[h] = j + 1; });
+  let row = 0;
+  if (id && cols.ID) { for (let i = 1; i < vals.length; i++) if (vals[i][cols.ID - 1] === String(id)) { row = i + 1; break; } }
+  else if (fila && !id) {
+    row = Number(fila);
+    // Sin ID (fila escrita a mano): se confirma con el folio que siga siendo el mismo registro
+    if (folio && cols.Folio && vals[row - 1] && String(vals[row - 1][cols.Folio - 1]) !== String(folio)) row = 0;
+  }
+  if (!row || row < 2 || row > vals.length) throw new Error('No encontré ese registro (quizá lo borraron o cambió). Toca Actualizar.');
+  return {row, cols, vals, sheetId:hojaMeta(hoja).sheetId};
+}
+async function ponerValor(rango, valor){
+  return gfetch(`${SHEETS}/${S.hoja}/values/${enc(rango)}?valueInputOption=RAW`, {method:'PUT', body:JSON.stringify({range:rango, majorDimension:'ROWS', values:[[valor]]})});
+}
+
+/* Lecturas con Google */
+async function gxLeer(q){
+  if (q.accion !== 'todo') throw new Error('Lectura desconocida');
+  const meta = await leerMeta(S.hoja); S.meta = meta;
+  const titulos = meta.sheets.map(s => s.properties.title);
+  const r = await gfetch(`${SHEETS}/${S.hoja}/values:batchGet?${titulos.map(x => 'ranges=' + enc(qn(x))).join('&')}&valueRenderOption=FORMATTED_VALUE&majorDimension=ROWS`);
+  const out = {tablas:[], ajustes:[], listas:{}};
+  (r.valueRanges || []).forEach((vr, i) => {
+    const t = titulos[i], vals = relleno(vr.values || []);
+    if (t === 'Ajustes') out.ajustes = vals.slice(1).filter(x => clean(x[0])).map(x => [clean(x[0]), String(x[1] || '').trim()]);
+    else if (t === 'Listas') out.listas = listasDe(vals);
+    else if (vals.length) out.tablas.push({nombre:t, filas:vals});
+  });
+  return out;
+}
+/* Escrituras con Google (mismos nombres que el servidor) */
+async function gxEscribir(b){
+  if (b.accion === 'estado') {
+    const u = await ubicar(b.hoja, b.id, b.fila, b.folio);
+    if (!u.cols.Estado) throw new Error('Falta la columna Estado en ' + b.hoja);
+    if (u.vals[u.row - 1][u.cols.Estado - 1] !== b.estado) await ponerValor(`${qn(b.hoja)}!${colLetra(u.cols.Estado)}${u.row}`, b.estado);
+    return {};
+  }
+  if (b.accion === 'eliminar') {
+    const u = await ubicar(b.hoja, b.id, b.fila, b.folio);
+    const links = u.cols.Archivos ? String(u.vals[u.row - 1][u.cols.Archivos - 1] || '').split(/\s+/) : [];
+    await gfetch(`${SHEETS}/${S.hoja}:batchUpdate`, {method:'POST', body:JSON.stringify({requests:[{deleteDimension:{range:{sheetId:u.sheetId, dimension:'ROWS', startIndex:u.row - 1, endIndex:u.row}}}]})});
+    // Solo se mandan a la papelera archivos que estén dentro de tu carpeta "Pixel Arte - Registros"
+    let raiz = ''; try { raiz = await carpetaPrincipal(false); } catch(e){}
+    const padres = async id => ((await gfetch(`${DRIVE}/files/${id}?fields=parents`)) || {}).parents || [];
+    for (const l of links) {
+      const m = /[-\w]{25,}/.exec(l); if (!m || !raiz) continue;
+      try {
+        const ps = await padres(m[0]); let dentro = ps.includes(raiz);
+        for (const p of ps) { if (dentro) break; dentro = (await padres(p)).includes(raiz); }
+        if (dentro) await gfetch(`${DRIVE}/files/${m[0]}?fields=id`, {method:'PATCH', body:JSON.stringify({trashed:true})});
+      } catch(e){}
+    }
+    return {};
+  }
+  if (b.accion === 'ajuste') {
+    if (/^pin/i.test(b.clave) && !/^\d{4,8}$/.test(b.valor)) throw new Error('El PIN debe tener de 4 a 8 números.');
+    const vals = await leerPestana('Ajustes'), pref = String(b.clave).toLowerCase().split(' (')[0];
+    const i = vals.findIndex((r, n) => n > 0 && String(r[0] || '').trim().toLowerCase().indexOf(pref) === 0);
+    if (i > 0) { if (String(vals[i][1] || '') !== String(b.valor)) await ponerValor(`${qn('Ajustes')}!B${i + 1}`, b.valor); }
+    else await gfetch(`${SHEETS}/${S.hoja}/values/${enc(qn('Ajustes') + '!A1:B1')}:append?valueInputOption=RAW&insertDataOption=INSERT_ROWS`, {method:'POST', body:JSON.stringify({values:[[b.clave, b.valor]]})});
+    return {};
+  }
+  if (b.accion === 'listas') {
+    const nombres = Object.keys(b.listas), filas = Math.max(...nombres.map(n => b.listas[n].length)) + 1;
+    const m = []; for (let i = 0; i < filas; i++) m.push(nombres.map(n => i === 0 ? n : (b.listas[n][i - 1] || '')));
+    const p = hojaMeta('Listas'), req = [];
+    if (filas > p.gridProperties.rowCount) req.push({appendDimension:{sheetId:p.sheetId, dimension:'ROWS', length:filas - p.gridProperties.rowCount + 10}});
+    if (nombres.length > p.gridProperties.columnCount) req.push({appendDimension:{sheetId:p.sheetId, dimension:'COLUMNS', length:nombres.length - p.gridProperties.columnCount}});
+    if (req.length) await gfetch(`${SHEETS}/${S.hoja}:batchUpdate`, {method:'POST', body:JSON.stringify({requests:req})});
+    await gfetch(`${SHEETS}/${S.hoja}/values/${enc(qn('Listas'))}:clear`, {method:'POST', body:'{}'});
+    await gfetch(`${SHEETS}/${S.hoja}/values/${enc(qn('Listas') + '!A1:' + colLetra(nombres.length) + filas)}?valueInputOption=RAW`, {method:'PUT', body:JSON.stringify({values:m})});
+    S.meta = await leerMeta(S.hoja);
+    return {};
+  }
+  throw new Error('Escritura desconocida');
+}
+
+/* Una sola puerta para el panel: lecturas con q, escrituras con body (en cola, de una en una) */
+function api(body, q){ return q ? gxLeer_(q) : gxPost(body); }
+// Llamadas del panel con PIN. Si el PIN ya no sirve (lo cambiaron en otro celular), se regresa a "Entrar"
+// en lugar de seguir intentando: así no se bloquea el panel por intentos fallidos.
+function panelPin(accion, datos){
+  if (S.via !== 'pin' || !S.pin) return Promise.reject(new Error('Tu sesión terminó. Entra de nuevo.'));
+  return srvPost(accion, Object.assign({}, datos, {pin:S.pin})).catch(e => { if (e.codigo === 'pin') pinCambio(); throw e; });
+}
+function pinCambio(){
+  PIN_STORE.del('pin'); S.via = null; S.pin = '';
+  if (S.modo === 'admin') { S.vista = 'login'; S.error = 'Tu PIN cambió o ya no es válido. Escríbelo de nuevo.'; render(); }
+}
+function gxLeer_(q){
+  if (S.via === 'google') return gxLeer(q);
+  return panelPin('listar', {}).then(j => { S.info = Object.assign(S.info || {}, {libro:j.libro, carpeta:j.carpeta}, j.version ? {version:j.version} : {}); return j; });
+}
+let cola = Promise.resolve();
+function gxPost(body){
+  const p = cola.then(() => S.via === 'google' ? gxEscribir(body) : panelPin(body.accion, body));
+  cola = p.catch(() => {});
+  return p;
+}
+
+/* #####################################################################
+   6. ESTADO
+   ##################################################################### */
+const CFG = {ajustes:{}, listas:{}, textos:0, version:0, cargado:false, error:''};
+const S = {
+  modo: EN_APK ? 'admin' : 'cliente', vista: EN_APK ? 'login' : 'inicio',
+  // clientes
+  tramite:null, paso:0, val:{}, files:{}, reqId:null, keep:false, last:null, sending:false, errEnvio:'', textosCache:null,
+  // panel
+  via:null, pin:'', correo:'', hoja:null, meta:null, info:{}, recs:[], ajustes:[], listas:{}, f:{t:'todos', e:'todos', q:''}, cur:null, error:'', cargando:false, entrando:false
+};
+const tramite = () => TRAMITES.find(t => t.id === S.tramite);
+function ajusteCfg(pref){ const k = Object.keys(CFG.ajustes).find(k => k.toLowerCase().indexOf(pref) === 0); return k ? CFG.ajustes[k] : ''; }
+function ajusteAdm(pref){ const r = S.ajustes.find(r => r[0].toLowerCase().indexOf(pref) === 0); return r ? r[1] : ''; }
+function negocio(){ return (S.modo === 'admin' && ajusteAdm('nombre')) || ajusteCfg('nombre') || 'Pixel Arte'; }
+function lista(nombre){ return (CFG.listas[nombre] && CFG.listas[nombre].length) ? CFG.listas[nombre] : (LISTAS_RESPALDO[nombre] || []); }
+let urls = [];
+function freeUrls(){ urls.forEach(u => { try { URL.revokeObjectURL(u); } catch(e){} }); urls = []; }
+function objUrl(b){ const u = URL.createObjectURL(b); urls.push(u); return u; }
+let doneTimer = null;
+
+/* Navegación con el botón atrás */
+let depth = 0;
+function push(){ depth++; try { history.pushState({d:depth}, ''); } catch(e){} }
+window.addEventListener('popstate', () => {
+  depth = Math.max(0, depth - 1);
+  if ($('#modal-root').classList.contains('on')) { closeModal(); push(); return; }
+  if (S.sending) { push(); toast('Espera a que termine de enviarse.'); return; }   // no salir a medio envío
+  goBack();
+});
+function goBack(){
+  if (S.modo === 'cliente') {
+    if (S.vista === 'form') { if (S.paso > 0) S.paso--; else { S.vista = 'inicio'; soltarTodos(); S.files = {}; borrarBorrador(); } }
+    else if (S.vista === 'listo') return terminar();
+    else if (EN_APK && S.via) { S.modo = 'admin'; S.vista = 'lista'; }
+  } else {
+    if (['detalle','qr','ajustes'].includes(S.vista)) S.vista = 'lista';
+    else if (!EN_APK) { salirPanel(); return; }
+  }
+  render(true); window.scrollTo(0, 0);
+}
+function atras(){ if (depth > 0) { history.back(); return; } goBack(); }
+function ir(modo, vista){ S.modo = modo; S.vista = vista; push(); render(true); window.scrollTo(0, 0); }
+
+/* #####################################################################
+   7. PANTALLAS
+   ##################################################################### */
+function renderHeader(){
+  const neg = negocio();
+  $('#bizname').textContent = neg;
+  $('#logo').textContent = neg.split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase() || 'PA';
+  $('#bizsub').textContent = S.modo === 'admin' ? 'Panel de registros' : 'Registro de clientes';
+  const dentro = S.modo === 'admin' && S.vista !== 'login';
+  $('#hbtns').innerHTML = S.modo === 'cliente'
+    ? `<button class="icon-btn" data-act="abrir-panel" aria-label="Panel del negocio">${ico('lock')}</button>`
+    : (dentro ? `<span style="display:flex;gap:8px"><button class="icon-btn ${S.cargando ? 'spinning' : ''}" id="btnReload" data-act="reload" aria-label="Actualizar">${ico('sync')}</button>
+        <button class="icon-btn" data-act="ajustes" aria-label="Ajustes">${ico('gear')}</button>
+        ${EN_APK ? '' : `<button class="icon-btn" data-act="salir-panel" aria-label="Salir del panel">${ico('x')}</button>`}</span>` : '');
+}
+// anim = true cuando se cambia de pantalla (entrada suave); las actualizaciones de datos no animan
+function render(anim){
+  freeUrls(); clearTimeout(doneTimer);
+  const v = $('#view');
+  try {
+    renderHeader();
+    const t = S.modo === 'cliente' && S.tramite ? tramite() : null;
+    v.style.setProperty('--accent', t ? t.c : '#4b2bd0');
+    v.style.setProperty('--tint', t ? t.t : '#eeeafd');
+    let h = '';
+    if (S.modo === 'cliente') h = S.vista === 'form' && t ? vForm() : (S.vista === 'listo' && S.last ? vListo() : vInicio());
+    else h = ({login:vLogin, lista:vLista, detalle:vDetalle, qr:vQR, ajustes:vAjustes}[S.vista] || vLista)();
+    v.innerHTML = h;
+    if (S.modo === 'cliente' && S.vista === 'form' && t) { despuesDeForm(); guardarBorrador(false); }
+    if (S.modo === 'admin' && S.vista === 'lista') renderList();
+    if (S.modo === 'cliente' && S.vista === 'listo') doneTimer = setTimeout(terminar, 120000);
+  } catch(e) {
+    // Nunca dejar la pantalla en blanco: se muestra un aviso con salida segura
+    console.error(e);
+    v.innerHTML = `<section class="card" style="margin-top:20px"><h2>Algo salió mal en esta pantalla</h2><p class="small">${esc(e && e.message || e)}</p>
+      <button class="btn primary block" data-act="rescate" style="margin:10px 0 14px">Volver al inicio</button></section>`;
+  }
+  if (anim) { v.classList.remove('anim'); void v.offsetWidth; v.classList.add('anim'); }
+}
+
+/* ---------------- Clientes: inicio ---------------- */
+function vInicio(){
+  const prev = !SCRIPT_OK ? `<div class="warnbar"><b>Vista previa.</b> Así se verá para tus clientes. Para que guarde los registros, pega el link de tu servidor en <b>config.js</b> (ver LEEME).</div>` : '';
+  const keep = S.keep && S.val.nombre ? `<div class="keep">${ico('check',18)}<span>Usando los datos de <b>${esc(S.val.nombre)}</b></span><button data-act="borrar-datos">Borrar</button></div>` : '';
+  return `${prev}<section class="hero"><h1>¿Qué trámite necesitas?</h1><p>Elige una opción. Después llenas tus datos.</p></section>${keep}
+  <div class="grid">${TRAMITES.map((t, i) => { const wide = i === TRAMITES.length - 1 && TRAMITES.length % 2 === 1; return `
+    <button class="tcard ${wide ? 'wide' : ''}" data-act="elegir" data-t="${t.id}" style="--c:${t.c};--t:${t.t}">
+      <span class="tile">${ico(t.icono, 26)}</span><span class="tx"><b>${esc(t.nombre)}</b><small>${esc(t.desc || '')}</small></span></button>`; }).join('')}</div>`;
+}
+
+/* ---------------- Clientes: formulario ---------------- */
+function visible(u){ return !u.si || Object.keys(u.si).every(k => S.val[k] === u.si[k]); }
+// Quita acentos y mayúsculas para comparar: "unach" = "UNACH" = "Unach"
+function norm(t){ return String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, ' ').trim(); }
+// Siglas y atajos que se convierten solos en el nombre completo (solo si no son ambiguos)
+// Cada lista tiene sus propios atajos (las siglas de escuelas no se mezclan con las carreras)
+const ATAJOS = (() => {
+  const hacer = llenar => {
+    const mapa = {}, repetidos = {};
+    llenar((atajo, nombre) => { const k = norm(atajo); if (!k) return; if (mapa[k] && mapa[k] !== nombre) repetidos[k] = 1; else mapa[k] = nombre; });
+    Object.keys(repetidos).forEach(k => delete mapa[k]);
+    return mapa;
+  };
+  return {
+    Escuelas: hacer(poner => Object.keys(SIGLAS_ESCUELAS).forEach(n => SIGLAS_ESCUELAS[n].split(' / ').forEach(sg => poner(sg, n)))),
+    Carreras: hacer(poner => LISTAS_RESPALDO.Carreras.forEach(c => {
+      c.split(' / ').slice(1).forEach(alt => poner(alt, c));
+      const sg = /\(([A-Z][A-Z0-9]{1,})\)/.exec(c); if (sg) poner(sg[1], c);
+    }))
+  };
+})();
+// Devuelve el nombre que debe quedar guardado: lo de la lista si coincide, la sigla completa si es un atajo, o lo que escribió
+function canonico(nombreLista, v){
+  const t = clean(v); if (!t) return '';
+  const k = norm(t);
+  const igual = lista(nombreLista).find(o => norm(o) === k); if (igual) return igual;
+  const atajo = (ATAJOS[nombreLista] || {})[k]; if (atajo) return atajo;
+  return t;
+}
+function opcionesLista(nombreLista){
+  return lista(nombreLista).map(o => `<option value="${esc(o)}"${SIGLAS_ESCUELAS[o] ? ` label="${esc(SIGLAS_ESCUELAS[o])}"` : ''}></option>`).join('');
+}
+function valorFinal(id){
+  const d = CAMPOS[id], v = S.val[id];
+  if (d.tipo === 'lista') return canonico(d.lista, v);
+  if (d.tipo === 'telefono') return String(v || '').replace(/\D/g, '');
+  if (d.mayus) return clean(v).toUpperCase();
+  return d.tipo === 'area' ? String(v || '').trim() : clean(v);
+}
+function textoMostrar(id){
+  const d = CAMPOS[id], v = valorFinal(id);
+  if (d.tipo === 'opciones') { const o = (d.opciones || []).find(o => o[0] === v); return o ? o[1] : v; }
+  return v;
+}
+function etiqueta(u){ const d = CAMPOS[u.c]; return d.label || d.k || ''; }
+function marca(u){ return u.req ? '<span class="req">*</span>' : '<span class="opt">(opcional)</span>'; }
+function campoHTML(u){
+  const d = CAMPOS[u.c]; if (!d) return '';
+  const vis = visible(u) ? '' : 'hide', val = S.val[u.c] == null ? '' : S.val[u.c], id = 'f-' + u.c;
+  const envolver = (inner, conLabel) => `<div class="f campo ${vis}" data-campo="${u.c}">${conLabel !== false ? `<label for="${id}">${esc(etiqueta(u))}${marca(u)}</label>` : ''}${d.hint ? `<div class="hint">${esc(d.hint)}</div>` : ''}${inner}<div class="emsg">${esc(u.emsg || d.emsg || (d.tipo === 'telefono' ? 'Escribe un número de 10 dígitos.' : (d.tipo === 'fotos' ? 'Sube al menos una foto.' : (d.tipo === 'documento' ? 'Sube tu archivo.' : (d.tipo === 'opciones' ? 'Elige una opción.' : 'Esta pregunta es obligatoria.')))))}</div></div>`;
+  if (d.tipo === 'texto' || d.tipo === 'telefono')
+    return envolver(`<input class="in" id="${id}" data-bind="${u.c}" type="${d.tipo === 'telefono' ? 'tel' : 'text'}" value="${esc(val)}" ${d.ph ? `placeholder="${esc(d.ph)}"` : (d.tipo === 'telefono' ? 'placeholder="10 dígitos"' : '')} ${d.im || d.tipo === 'telefono' ? `inputmode="${d.im || 'numeric'}"` : ''} ${d.cap ? `autocapitalize="${d.cap}"` : ''} ${d.mayus ? 'autocapitalize="characters"' : ''} autocomplete="off">`);
+  if (d.tipo === 'area') return envolver(`<textarea class="in" id="${id}" data-bind="${u.c}" ${d.ph ? `placeholder="${esc(d.ph)}"` : ''}>${esc(val)}</textarea>`);
+  if (d.tipo === 'lista')
+    return envolver(`<input class="in" id="${id}" data-bind="${u.c}" data-lista="${esc(d.lista)}" list="dl-${u.c}" value="${esc(val)}" placeholder="${esc(d.ph || 'Escribe o elige')}" autocomplete="off" autocapitalize="words"><datalist id="dl-${u.c}" data-dl="${esc(d.lista)}">${opcionesLista(d.lista)}</datalist>`);
+  if (d.tipo === 'opciones') return envolver(`<div class="radios">${d.opciones.map(([v, l]) => `<label class="radio ${val === v ? 'sel' : ''}"><input type="radio" name="op-${u.c}" data-bind="${u.c}" value="${esc(v)}" ${val === v ? 'checked' : ''}>${esc(l)}</label>`).join('')}</div>`, true).replace(`<label for="${id}">`, '<span class="flabel">').replace(`${marca(u)}</label>`, `${marca(u)}</span>`);
+  if (d.tipo === 'fotos') return envolver(`<div id="up-${u.c}"></div><input type="file" id="in-${u.c}" data-subir="${u.c}" accept="image/*" multiple class="hide">`, false);
+  if (d.tipo === 'documento') return envolver(`<div id="up-${u.c}"></div><input type="file" id="in-${u.c}" data-subir="${u.c}" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="hide">`).replace(`<label for="${id}">`, '<span class="flabel">').replace(`${marca(u)}</label>`, `${marca(u)}</span>`);
+  if (d.tipo === 'galeria') {
+    const link = safeUrl(ajusteCfg(d.ajusteLink || 'link de textos'));
+    const inner = CFG.textos > 0 ? `<button class="linkbtn" data-act="galeria" data-carpeta="${esc(d.carpeta)}">${ico('book')}${esc(d.texto)}</button>`
+      : (link ? `<a class="linkbtn" href="${esc(link)}" target="_blank" rel="noopener">${ico('book')}${esc(d.texto)}</a>` : '');
+    return inner ? `<div class="campo ${vis}" data-campo="${u.c}">${inner}</div>` : '';
+  }
+  if (d.tipo === 'nota') return `<div class="campo ${vis}" data-campo="${u.c}"><div class="note">${esc(d.texto)}</div></div>`;
+  return '';
+}
+function banner(){ const t = tramite(); return `<div class="banner"><span class="bt">${ico(t.icono, 24)}</span><span><small>Estás llenando</small><b>${esc(t.nombre)}</b></span><button data-act="cambiar">Cambiar</button></div>`; }
+function pasos(n){
+  const t = tramite(), total = t.pasos.length + 1, lbl = n < t.pasos.length ? t.pasos[n].titulo : 'Revisa y envía';
+  return `<div class="steps">${Array.from({length:total}, (_, i) => `<i class="${i <= n ? 'on' : ''}"></i>`).join('')}</div><div class="steplbl">Paso ${n + 1} de ${total} · ${esc(lbl)}</div>`;
+}
+function vForm(){
+  const t = tramite(), n = S.paso;
+  if (n < t.pasos.length) {
+    const p = t.pasos[n];
+    return banner() + pasos(n) + `<section class="card"><h2>${esc(p.titulo)}</h2>${p.campos.map(campoHTML).join('')}</section>
+      <div class="actions"><button class="btn ghost" data-act="${n === 0 ? 'cambiar' : 'anterior'}">${ico('back',20)}Atrás</button><button class="btn primary" data-act="siguiente">Siguiente</button></div>`;
+  }
+  // Revisión
+  const filas = [], fotos = [];
+  t.pasos.forEach(p => p.campos.forEach(u => {
+    if (!visible(u)) return; const d = CAMPOS[u.c]; if (!d) return;
+    if (d.tipo === 'fotos' || d.tipo === 'documento') (S.files[u.c] || []).forEach(f => fotos.push({f, tipo:d.tipo}));
+    else if (d.k) { const v = textoMostrar(u.c); if (v) filas.push([d.k, v]); }
+  }));
+  const imgs = fotos.filter(x => x.tipo === 'fotos'), docs = fotos.filter(x => x.tipo === 'documento');
+  return banner() + pasos(n) + `<div class="big-tramite">${ico(t.icono, 24)}Vas a enviar: ${esc(t.nombre.toUpperCase())}</div>
+    <section class="card"><h2>Revisa que todo esté bien</h2><dl class="rv">${filas.map(r => `<div><dt>${esc(r[0])}</dt><dd>${esc(r[1])}</dd></div>`).join('')}</dl>
+      ${imgs.length ? `<div class="thumbs" style="margin:6px 0 14px">${imgs.map((x, i) => `<div class="thumb">${ico('image',28)}<img src="${prevUrl(x.f)}" alt="" decoding="async" onerror="this.remove()"><span class="n">${i + 1}</span></div>`).join('')}</div>` : ''}
+      ${docs.map(x => `<div class="docrow" style="margin:6px 0 14px"><span class="di">${ico('file')}</span><span class="dn"><b>${esc(x.f.name)}</b><small>${tam(x.f.size)}</small></span></div>`).join('')}</section>
+    ${S.errEnvio && !S.sending ? `<div class="errbar" role="alert"><b>No se pudo enviar.</b> ${esc(S.errEnvio)}<br>Tus datos siguen aquí: toca <b>Enviar</b> otra vez.</div>` : ''}
+    <div class="actions"><button class="btn ghost" data-act="anterior" ${S.sending ? 'disabled' : ''}>${ico('edit',20)}Corregir</button>
+      <button class="btn primary" data-act="enviar" ${S.sending ? 'disabled' : ''}>${S.sending ? '<span class="spin"></span>Enviando…' : ico('check',20) + 'Enviar'}</button></div>`;
+}
+function despuesDeForm(){
+  const t = tramite(); if (S.paso >= t.pasos.length) return;
+  t.pasos[S.paso].campos.forEach(u => { const d = CAMPOS[u.c]; if (d && (d.tipo === 'fotos' || d.tipo === 'documento')) pintarArchivos(u.c); });
+}
+function actualizarVisibles(){
+  const t = tramite(); if (!t || S.paso >= t.pasos.length) return;
+  t.pasos[S.paso].campos.forEach(u => { const el = $(`.campo[data-campo="${u.c}"]`); if (el) el.classList.toggle('hide', !visible(u)); });
+}
+function pintarArchivos(id){
+  const box = $('#up-' + id); if (!box) return;
+  const d = CAMPOS[id], fs = S.files[id] || [];
+  if (d.tipo === 'fotos') {
+    box.innerHTML = `<div class="thumbs">${fs.map((f, i) => `<div class="thumb">${ico('image',28)}<img src="${prevUrl(f)}" alt="Foto ${i + 1}" decoding="async" onerror="this.remove()"><span class="n">${i + 1}</span><button class="rm" data-act="quitar-archivo" data-c="${id}" data-i="${i}" aria-label="Quitar foto ${i + 1}">${ico('x',18)}</button></div>`).join('')}
+      ${fs.length < (d.max || 5) ? `<button class="addtile" data-act="elegir-archivo" data-c="${id}">${ico('plus',28)}${fs.length ? 'Agregar otra' : 'Agregar fotos'}</button>` : ''}</div><p class="count">${fs.length} de ${d.max || 5} fotos</p>`;
+  } else {
+    const f = fs[0];
+    box.innerHTML = f ? `<div class="docrow"><span class="di">${ico('file')}</span><span class="dn"><b>${esc(f.name)}</b><small>${tam(f.size)}</small></span><button class="rm" data-act="quitar-archivo" data-c="${id}" data-i="0" aria-label="Quitar archivo">${ico('trash')}</button></div>`
+      : `<button class="upbtn" data-act="elegir-archivo" data-c="${id}">${ico('upload')}Agregar archivo</button>`;
+  }
+}
+function agregarArchivos(id, lista_){
+  const d = CAMPOS[id], files = Array.from(lista_ || []);
+  if (d.tipo === 'fotos') {
+    const imgs = files.filter(f => /^image\//.test(f.type) || /\.(jpe?g|png|webp|heic|heif)$/i.test(f.name));
+    if (!imgs.length) { toast('Elige archivos de imagen.'); return; }
+    const actual = S.files[id] = S.files[id] || [], max = d.max || 5, libre = max - actual.length; let n = 0, grandes = 0;
+    for (const f of imgs) { if (n >= libre) break; if (f.size > MAX_FOTO_MB * 1048576) { grandes++; continue; } if (!f.size) continue; actual.push({file:f, name:f.name, size:f.size, url:null, uid:uid()}); n++; }
+    if (imgs.length - grandes > libre) toast(`Máximo ${max} fotos. Se agregaron ${n}.`); else if (grandes) toast(`${grandes} foto(s) pesan más de ${MAX_FOTO_MB} MB y no se agregaron.`);
+  } else {
+    const f = files[0]; if (!f) return;
+    if (!/\.(pdf|docx?)$/i.test(f.name) && !/pdf|word|officedocument/.test(f.type)) { toast('El archivo debe ser Word o PDF.'); return; }
+    if (f.size > (d.maxMB || 10) * 1048576) { toast(`El archivo pesa ${tam(f.size)}. El máximo es ${d.maxMB || 10} MB.`); return; }
+    if (!f.size) { toast('Ese archivo está vacío. Elige otro.'); return; }
+    soltarArchivos(S.files[id]);
+    S.files[id] = [{file:f, name:f.name, size:f.size, url:null, uid:uid()}];
+  }
+  const el = $(`.campo[data-campo="${id}"]`); if (el) el.classList.remove('err');
+  pintarArchivos(id);
+  guardarBorrador(true);
+}
+function faltantes(paso){
+  const t = tramite(), malos = [];
+  t.pasos[paso].campos.forEach(u => {
+    if (!visible(u)) return; const d = CAMPOS[u.c]; if (!d || !d.k) return;
+    const v = valorFinal(u.c);
+    if (d.tipo === 'telefono') { if ((u.req && v.length !== 10) || (!u.req && v && v.length !== 10)) malos.push(u.c); }
+    else if (d.tipo === 'fotos' || d.tipo === 'documento') { if (u.req && !(S.files[u.c] || []).length) malos.push(u.c); }
+    else if (u.req && !v) malos.push(u.c);
+  });
+  return malos;
+}
+function validarPaso(){
+  const t = tramite(), malos = [];
+  t.pasos[S.paso].campos.forEach(u => {
+    if (!visible(u)) return; const d = CAMPOS[u.c]; if (!d || !d.k) return;
+    const v = valorFinal(u.c);
+    if (d.tipo === 'telefono') { if ((u.req && v.length !== 10) || (!u.req && v && v.length !== 10)) malos.push(u.c); }
+    else if (d.tipo === 'fotos' || d.tipo === 'documento') { if (u.req && !(S.files[u.c] || []).length) malos.push(u.c); }
+    else if (u.req && !v) malos.push(u.c);
+  });
+  $$('.f.err').forEach(e => e.classList.remove('err'));
+  malos.forEach(c => { const el = $(`.campo[data-campo="${c}"]`); if (el) el.classList.add('err'); });
+  if (malos.length) {
+    const el = $(`.campo[data-campo="${malos[0]}"]`);
+    if (el) { el.scrollIntoView({behavior:'smooth', block:'center'}); const d = CAMPOS[malos[0]], inp = $('input:not([type=radio]):not([type=file]),select,textarea', el); if (inp) setTimeout(() => inp.focus({preventScroll:true}), 250); }
+    toast('Revisa los campos marcados en rojo.');
+  }
+  return !malos.length;
+}
+function setProgreso(txt){ const b = $('[data-act="enviar"]'); if (b) b.innerHTML = '<span class="spin"></span>' + esc(txt); }
+async function enviar(){
+  if (S.sending) return;
+  if (!SCRIPT_OK) { toast('Vista previa: para guardar registros falta pegar el link de tu servidor en config.js.', 6000); return; }
+  const t = tramite(); if (!t) return;
+  // Se revisan todos los pasos (por si se recuperó un borrador o algo cambió)
+  for (let i = 0; i < t.pasos.length; i++) {
+    if (faltantes(i).length) { S.paso = i; render(true); window.scrollTo(0, 0); setTimeout(validarPaso, 60); return; }
+  }
+  S.sending = true; S.errEnvio = ''; render();
+  try {
+    const nombre = fileSafe(valorFinal('nombre')) || 'Cliente';
+    if (!S.reqId) { S.reqId = uid(); guardarBorrador(false); }
+    const campos = [], archivos = [];
+    for (const p of t.pasos) for (const u of p.campos) {
+      if (!visible(u)) continue; const d = CAMPOS[u.c]; if (!d) continue;
+      if (d.tipo === 'fotos' || d.tipo === 'documento') {
+        const fs = S.files[u.c] || [];
+        for (let i = 0; i < fs.length; i++) {
+          const f = fs[i];
+          if (!f.url) {
+            setProgreso(d.tipo === 'fotos' ? `Subiendo foto ${i + 1} de ${fs.length}…` : 'Subiendo archivo…');
+            if (!f.uid) f.uid = uid();
+            const file = d.tipo === 'fotos' ? await prepImage(f.file) : f.file;
+            const ext = extOf(file.name || f.name, file.type);
+            let data;
+            try { data = await toB64(file); } catch(err) { throw new Error(`No se pudo leer ${d.tipo === 'fotos' ? 'la foto ' + (i + 1) : 'el archivo'}. Quítala y vuelve a elegirla.`); }
+            const res = await srvPost('subir', {uid:f.uid, carpeta:t.hoja, nombre: d.tipo === 'fotos' ? `${nombre} ${i + 1}.${ext}` : `${nombre}.${ext}`, mime:mimeOf(file.name || f.name, file.type), data});
+            data = null;
+            f.url = res.url;
+            guardarBorrador(true);   // lo ya subido no se vuelve a subir aunque se cierre la página
+          }
+          archivos.push(f.url);
+        }
+      } else if (d.k) campos.push({k:d.k, v:valorFinal(u.c)});
+    }
+    setProgreso('Guardando…');
+    const res = await srvPost('enviar', {id:S.reqId, tramite:t.hoja, campos, archivos});
+    S.last = {folio:res.folio, tramite:t.id, nombre:valorFinal('nombre')};
+    borrarBorrador(); soltarTodos();
+    S.sending = false; S.errEnvio = ''; S.vista = 'listo'; S.keep = true; S.reqId = null; S.files = {};
+    Object.keys(S.val).forEach(k => { const base = k.split('__')[0]; if (!(CAMPOS[base] && CAMPOS[base].guardar)) delete S.val[k]; });
+    render(true); window.scrollTo(0, 0);
+  } catch(e) {
+    console.error(e); S.sending = false; S.errEnvio = e.message || String(e); render();
+    const err = $('.errbar[role="alert"]'); if (err) err.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+}
+function vListo(){
+  const r = S.last, t = TRAMITES.find(x => x.id === r.tramite), first = (r.nombre || '').split(' ')[0];
+  return `<section class="done" style="--accent:${t.c}"><div class="ok">${ico('check', 44)}</div><h1>¡Listo${first ? ', ' + esc(first) : ''}!</h1>
+    <p>Recibimos tu registro de <b>${esc(t.nombre)}</b>.</p><div class="folio">Tu folio<b>#${esc(r.folio)}</b></div>
+    <div class="stack"><button class="btn primary block" data-act="otro" style="background:${t.c}">${ico('plus',20)}Registrar otro trámite con mis datos</button>
+      <button class="btn ghost block" data-act="terminar">Terminar</button></div></section>`;
+}
+function terminar(){
+  clearTimeout(doneTimer); soltarTodos(); borrarBorrador();
+  Object.assign(S, {val:{}, files:{}, keep:false, tramite:null, paso:0, vista:'inicio', reqId:null, errEnvio:''});
+  render(true); window.scrollTo(0, 0);
+}
+async function cargarConfig(){
+  try { const c = JSON.parse(LS.get('config') || 'null'); if (c) aplicarConfig(c, false); } catch(e){}
+  if (!SCRIPT_OK) return;
+  try { const j = await srvGet({accion:'config'}); aplicarConfig(j, true); LS.set('config', JSON.stringify({ajustes:j.ajustes, listas:j.listas, textos:j.textos, version:j.version})); }
+  catch(e){ CFG.error = e.message; }
+}
+function aplicarConfig(j, fresco){
+  CFG.ajustes = j.ajustes || {}; CFG.listas = j.listas || {}; CFG.textos = j.textos || 0; CFG.version = j.version || 0; CFG.cargado = CFG.cargado || fresco;
+  $('#bizname').textContent = negocio();
+  // Actualiza las listas abiertas sin perder lo que el cliente ya escribió
+  $$('datalist[data-dl]').forEach(dl => { dl.innerHTML = opcionesLista(dl.dataset.dl); });
+}
+async function verGaleria(carpeta){
+  modal(`<h3>Textos predeterminados</h3><p>Anota el número del texto que te guste.</p><div class="viewer" id="viewer"><div class="loading"><span class="spin-d"></span>Cargando…</div></div><button class="btn primary block" data-act="cerrar-modal" style="margin-top:6px;background:var(--brand)">Cerrar</button>`);
+  try {
+    if (!S.textosCache) S.textosCache = (await srvGet({accion:'imagenes', carpeta})).imagenes || [];
+    const v = $('#viewer'); if (v) v.innerHTML = S.textosCache.filter(x => /^data:image\/[\w.+-]+;base64,[A-Za-z0-9+/=]+$/.test(x.src)).map(x => `<img src="${esc(x.src)}" alt="${esc(x.nombre)}" loading="lazy" decoding="async">`).join('') || '<p>No hay imágenes.</p>';
+  } catch(e){ const v = $('#viewer'); if (v) v.innerHTML = `<p>No se pudieron cargar: ${esc(e.message)}</p>`; }
+}
+
+/* ---------------- Panel: entrar ---------------- */
+function vLogin(){
+  const google = EN_APK || !!CLIENT_ID_FIJO;
+  return `<section class="login"><div class="logo big">${esc(negocio().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase() || 'PA')}</div><h1>Panel de ${esc(negocio())}</h1>
+    <p>Solo para el negocio. Aquí ves y organizas los registros de tus clientes.</p>
+    ${S.error ? `<div class="errbar" style="max-width:420px">${esc(S.error)}${PIN_STORE.get('pin') && SCRIPT_OK && !S.entrando ? ` <button class="tool sm" data-act="reintentar-pin" style="display:inline-flex;margin:8px 0 0">${ico('sync',16)}Reintentar</button>` : ''}</div>` : ''}
+    ${google ? `<button class="gbtn" data-act="login-google" ${S.entrando ? 'disabled' : ''}><span class="g">${GLOGO}</span>Iniciar sesión con Google</button>` : ''}
+    ${SCRIPT_OK ? `${google ? '<div class="sep">o entra con tu PIN</div>' : ''}<div class="pinrow"><input class="in" id="pin" type="password" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="PIN"><button class="btn primary" data-act="login-pin" style="background:var(--brand)" ${S.entrando ? 'disabled' : ''}>${S.entrando ? '<span class="spin"></span>' : 'Entrar'}</button></div>`
+      : (!google ? '<div class="warnbar" style="max-width:420px">Falta pegar el link de tu servidor en config.js para poder entrar con PIN.</div>' : '')}
+    <div style="margin-top:22px"><button class="tool sm" data-act="ver-formulario">${ico('form',18)}${EN_APK ? 'Abrir formulario de clientes' : 'Volver al formulario'}</button></div>
+    <p class="small" style="margin-top:18px">Versión ${esc(VERSION)} (${esc(ORIGEN)})</p></section>`;
+}
+async function entrarGoogle(){
+  S.entrando = true; S.error = ''; render();
+  try {
+    await token(false);
+    S.correo = (await gfetch('https://www.googleapis.com/oauth2/v3/userinfo')).email || '';
+    S.hoja = await encontrarHoja();
+    S.via = 'google'; LS.set('via', 'google'); LS.set('sesion', '1');
+    S.info = {libro:'https://docs.google.com/spreadsheets/d/' + S.hoja, carpeta:''};
+    carpetaPrincipal(false).then(id => { if (id) S.info.carpeta = 'https://drive.google.com/drive/folders/' + id; }).catch(() => {});
+    S.vista = 'lista'; S.entrando = false;
+    await cargar(true);
+  } catch(e) { console.error(e); S.via = null; S.vista = 'login'; S.error = e.message || String(e); S.entrando = false; render(); }
+}
+async function entrarPin(pin, silencioso){
+  if (!/^\d{4,8}$/.test(pin || '')) { if (!silencioso) toast('Escribe tu PIN (4 a 8 números).'); return; }
+  S.entrando = true; S.error = ''; if (!silencioso) render();
+  try {
+    const j = await srvPost('entrar', {pin});
+    S.via = 'pin'; S.pin = pin; S.info = {libro:j.libro, carpeta:j.carpeta, version:j.version};
+    PIN_STORE.set('pin', pin); LS.set('via', 'pin');
+    S.vista = 'lista'; S.entrando = false;
+    await cargar(true);
+  } catch(e) {
+    // Solo se olvida el PIN guardado si de verdad es incorrecto (no si falló el internet)
+    if (e.codigo === 'pin') PIN_STORE.del('pin');
+    S.via = null; S.pin = ''; S.vista = 'login'; S.entrando = false;
+    S.error = (e.message || String(e)) + (e.red || e.reintentar ? ' Toca Reintentar.' : '');
+    render();
+  }
+}
+// Pasa las listas viejas a las nuevas: conserva lo que tú agregaste y quita lo viejo que ya no aplica
+async function migrarListas_(){
+  if (S.modo !== 'admin' || (Number(ajusteAdm('versión listas')) || 0) >= LISTAS_VERSION) return false;
+  const nuevas = {};
+  Object.keys(LISTAS_RESPALDO).forEach(n => {
+    const oficiales = LISTAS_RESPALDO[n], normOf = oficiales.map(norm), viejas = LISTAS_V1[n] || [];
+    // Una opción vieja solo se quita si la lista nueva ya tiene su equivalente
+    // ("Universidad Maya UM" -> "Universidad Maya"; "Licenciatura en Derecho" -> "... / Ciencias Jurídicas").
+    // Lo que tú agregaste y lo que no tiene equivalente (ej. ISEEECH) se conserva.
+    const tieneEquivalente = x => { const k = norm(x); return normOf.some(o => o === k || k.startsWith(o + ' ') || o.startsWith(k + ' ') || o.startsWith(k + ' /')); };
+    const conservar = (S.listas[n] || []).filter(x => !(viejas.includes(x) && tieneEquivalente(x)) && !normOf.includes(norm(x)));
+    nuevas[n] = Array.from(new Set(oficiales.concat(conservar)));
+  });
+  Object.keys(S.listas).forEach(n => { if (!(n in nuevas)) nuevas[n] = S.listas[n]; });
+  await api({accion:'listas', listas: nuevas});
+  await api({accion:'ajuste', clave:'Versión listas', valor:String(LISTAS_VERSION)});
+  return true;
+}
+// Una sola carga a la vez; si ya hay una en camino, se espera esa misma
+let cargaP = null, ultimaCarga = 0;
+function cargar(silencioso){
+  if (cargaP) return cargaP;
+  cargaP = (async () => {
+    S.cargando = true; marcarCarga(true);
+    if (S.vista === 'lista' && !S.recs.length) renderList();
+    try {
+      procesar(await api(null, {accion:'todo'}));
+      if (await migrarListas_().catch(() => false)) procesar(await api(null, {accion:'todo'}));
+      S.error = ''; ultimaCarga = Date.now();
+      autoLinkQR();
+    } catch(e) { if (S.via) { S.error = e.message || String(e); if (!silencioso) toast(S.error, 5000); } }
+    S.cargando = false; marcarCarga(false);
+    refrescarVista();
+  })();
+  cargaP.then(() => { cargaP = null; }, () => { cargaP = null; });
+  return cargaP;
+}
+function marcarCarga(on){ const b = $('#btnReload'); if (b) b.classList.toggle('spinning', !!on); }
+// Actualiza solo lo necesario: no se borra lo que estás escribiendo en Ajustes ni se pierde tu lugar en la lista
+function refrescarVista(){
+  if (S.modo !== 'admin' || !S.via) { renderHeader(); return; }
+  if (S.vista === 'lista') {
+    const y = window.scrollY, enBusqueda = document.activeElement && document.activeElement.id === 'q', n = listaN;
+    render(); if (n > LOTE) renderList(n);
+    if (enBusqueda) { const i = $('#q'); if (i) { i.focus({preventScroll:true}); const k = i.value.length; try { i.setSelectionRange(k, k); } catch(e){} } }
+    window.scrollTo(0, y);
+  } else if (S.vista === 'detalle') {
+    const r = S.cur, n = r && S.recs.find(x => x.hoja === r.hoja && (r.id ? x.id === r.id : x.folio === r.folio));
+    if (n) { S.cur = n; const y = window.scrollY; render(); window.scrollTo(0, y); }
+  } else renderHeader();
+}
+function procesar(raw){
+  const recs = [];
+  (raw.tablas || []).forEach(tb => {
+    if (ESPECIALES.includes(tb.nombre)) return;
+    const head = (tb.filas[0] || []).map(h => String(h).trim());
+    for (let i = 1; i < tb.filas.length; i++) {
+      const row = tb.filas[i], v = {};
+      head.forEach((h, j) => { if (h) v[h] = String(row[j] == null ? '' : row[j]); });
+      if (!Object.keys(v).some(k => v[k])) continue;
+      const otros = head.filter(h => h && !FIJAS.includes(h));
+      const r = {hoja:tb.nombre, fila:i + 1, v, head:otros, id:v.ID || '', folio:v.Folio || '', fecha:v.Fecha || '',
+        estado: ESTADOS.includes(v.Estado) ? v.Estado : 'Pendiente',
+        nombre: v['Nombre completo'] || otros.map(h => v[h]).find(Boolean) || '(sin nombre)',
+        archivos: String(v.Archivos || '').split(/\s+/).filter(u => /^https:\/\//.test(u))};
+      // Texto para buscar, sin acentos ni mayúsculas (se calcula una vez, no en cada letra que escribes)
+      r.busca = norm(r.folio + ' #' + r.folio + ' ' + estilo(tb.nombre).nombre + ' ' + otros.map(h => v[h]).join(' '));
+      recs.push(r);
+    }
+  });
+  recs.sort((a, b) => (Number(b.folio) || 0) - (Number(a.folio) || 0));
+  recs.forEach((r, i) => { r.idx = i; });
+  S.recs = recs; S.ajustes = raw.ajustes || []; S.listas = raw.listas || {};
+  if (Object.keys(S.listas).length) CFG.listas = S.listas;
+  // Los ajustes de negocio (nombre, links) también se actualizan, para que la vista de clientes no muestre datos viejos
+  if (S.ajustes.length) { const a = {}; S.ajustes.forEach(r => { if (!/^pin/i.test(r[0])) a[r[0]] = r[1]; }); CFG.ajustes = a; }
+}
+function linkQR(){
+  const a = ajusteAdm('link para clientes');
+  if (safeUrl(a) && !/script\.google\.com/.test(a)) return a;
+  return urlPagina();
+}
+function autoLinkQR(){
+  const actual = ajusteAdm('link para clientes'), pagina = urlPagina();
+  if (pagina && (!actual || /script\.google\.com/.test(actual))) {
+    api({accion:'ajuste', clave:AJ.linkQR, valor:pagina}).then(() => {
+      const r = S.ajustes.find(r => r[0].toLowerCase().indexOf('link para clientes') === 0);
+      if (r) r[1] = pagina; else S.ajustes.push([AJ.linkQR, pagina]);
+    }).catch(() => {});
+  }
+}
+function salirPanel(){
+  SS.del('pin'); if (!EN_APK) { S.via = null; S.pin = ''; }
+  S.modo = 'cliente'; S.vista = 'inicio'; render(); window.scrollTo(0, 0);
+}
+async function cerrarSesion(){
+  const t = tokenActual, c = S.correo;
+  try {
+    if (S.via === 'google') {
+      if (PUENTE && PUENTE.cerrarSesion) PUENTE.cerrarSesion(c || '', t || '');
+      else if (t && window.google && google.accounts && google.accounts.oauth2) google.accounts.oauth2.revoke(t, () => {});
+    }
+  } catch(e){}
+  limpiarSesion(); tokenActual = null; tokenExp = 0;
+  Object.assign(S, {via:null, pin:'', correo:'', hoja:null, meta:null, info:{}, recs:[], ajustes:[], cur:null, error:'', vista:'login'});
+  render();
+}
+
+/* ---------------- Panel: pantallas ---------------- */
+function estilo(hoja){ return TRAMITES.find(t => t.hoja === hoja) || {nombre:hoja, hoja, c:'#64748b', t:'#eef1f5', icono:'file'}; }
+function hojasPanel(){
+  const extra = Array.from(new Set(S.recs.map(r => r.hoja))).filter(h => !TRAMITES.some(t => t.hoja === h));
+  return TRAMITES.map(t => t.hoja).concat(extra);
+}
+function filtrados(){
+  const palabras = norm(S.f.q).split(' ').filter(Boolean);   // "johan 7b" encuentra registros con las dos palabras
+  return S.recs.filter(r => (S.f.t === 'todos' || r.hoja === S.f.t) && (S.f.e === 'todos' || r.estado === S.f.e) &&
+    (!palabras.length || palabras.every(p => r.busca.includes(p))));
+}
+function vLista(){
+  const n = h => S.recs.filter(r => h === 'todos' || r.hoja === h).length, pend = S.recs.filter(r => r.estado === 'Pendiente').length;
+  const avisoPin = S.via === 'pin' && S.pin === '1234' ? `<div class="warnbar">Tu PIN sigue siendo <b>1234</b>. Cámbialo en Ajustes.</div>` : '';
+  const avisoSrv = S.via === 'pin' && S.info.version && S.info.version < SERVIDOR_RECOMENDADO ? `<div class="warnbar">Hay un <b>Code.gs</b> nuevo con mejoras de seguridad. Pégalo una vez en Apps Script (ver LEEME). Todo sigue funcionando mientras tanto.</div>` : '';
+  return `${S.error ? `<div class="errbar">${esc(S.error)}</div>` : ''}${avisoPin}${avisoSrv}
+    <div class="ptitle"><h1>Registros</h1><div class="sp"></div><button class="tool sm" data-act="qr">${ico('qr',18)}Mi QR</button></div>
+    ${S.recs.length ? `<p class="small" style="margin:-6px 2px 12px">${S.recs.length} registros · ${pend} pendientes</p>` : ''}
+    <div class="chips"><button class="chip ${S.f.t === 'todos' ? 'on' : ''}" data-act="ft" data-v="todos">Todos <em>${n('todos')}</em></button>
+      ${hojasPanel().map(h => { const t = estilo(h); return `<button class="chip ${S.f.t === h ? 'on' : ''}" data-act="ft" data-v="${esc(h)}" style="--c:${t.c}"><span class="dot"></span>${esc(t.nombre)} <em>${n(h)}</em></button>`; }).join('')}</div>
+    <div class="search">${ico('search',20)}<input class="in" id="q" type="search" placeholder="Buscar nombre, folio, escuela, grupo…" value="${esc(S.f.q)}"></div>
+    <div class="seg">${[['todos','Todos'],['Pendiente','Pendientes'],['Listo','Listos'],['Entregado','Entregados']].map(([k, l]) => `<button class="${S.f.e === k ? 'on' : ''}" data-act="fe" data-v="${k}">${l}</button>`).join('')}</div>
+    <div class="list" id="list"></div>
+    <div class="tools" style="margin-top:14px"><button class="tool" data-act="exportar">${ico('download',18)}Descargar lista (Excel)</button>
+      ${safeUrl(S.info.libro) ? `<button class="tool" data-act="abrir-url" data-u="${esc(S.info.libro)}">${ico('sheet',18)}Abrir hoja</button>` : ''}</div>
+    <div class="tools"><button class="tool" data-act="ver-formulario">${ico('form',18)}Abrir formulario de clientes</button>
+      ${safeUrl(S.info.carpeta) ? `<button class="tool" data-act="abrir-url" data-u="${esc(S.info.carpeta)}">${ico('folder',18)}Fotos en Drive</button>` : ''}</div>`;
+}
+// La lista se dibuja por partes (60 a la vez) y agrega más al bajar: abre rápido aunque haya miles de registros
+const LOTE = 60;
+let listaRs = [], listaN = 0, listaObs = null;
+function filaHTML(r){
+  const t = estilo(r.hoja);
+  return `<button class="row" data-act="abrir" data-i="${r.idx}" style="--c:${t.c};--t:${t.t}"><span class="ri">${ico(t.icono)}</span>
+      <span class="rm2"><b>${esc(r.nombre)}</b><small>#${esc(r.folio)} · ${esc(t.nombre)} · ${esc(r.fecha)}</small>
+        <small>${esc([r.v['Grado y grupo'], r.v.Escuela, r.v.Carrera].filter(Boolean).join(' · ') || r.v['Teléfono'] || '')}</small></span>
+      <span class="pill e-${esc(r.estado.toLowerCase())}">${esc(r.estado)}</span></button>`;
+}
+function renderList(minimo){
+  const L = $('#list'); if (!L) return;
+  if (listaObs) { listaObs.disconnect(); }
+  if (S.cargando && !S.recs.length) { L.innerHTML = Array.from({length:5}, () => '<div class="row skel"><span class="ri"></span><span class="rm2"><b></b><small></small></span></div>').join(''); return; }
+  listaRs = filtrados(); listaN = 0;
+  if (!listaRs.length) { L.innerHTML = `<div class="empty">${S.recs.length ? 'No hay registros con este filtro.' : 'Todavía no hay registros. Cuando tus clientes llenen la página del QR, aparecerán aquí.'}</div>`; return; }
+  L.innerHTML = '';
+  masFilas(Math.max(LOTE, minimo || 0));
+}
+function masFilas(cuantas){
+  const L = $('#list'); if (!L) return;
+  const viejo = $('#list-mas'); if (viejo) { if (listaObs) listaObs.unobserve(viejo); viejo.remove(); }
+  const sig = listaRs.slice(listaN, listaN + (cuantas || LOTE)); listaN += sig.length;
+  const quedan = listaRs.length - listaN;
+  L.insertAdjacentHTML('beforeend', sig.map(filaHTML).join('') + (quedan > 0 ? `<button class="tool sm" id="list-mas" data-act="mas" style="margin:6px auto 0">Ver ${Math.min(quedan, LOTE)} más (${quedan} restantes)</button>` : ''));
+  const m = $('#list-mas');
+  if (m && 'IntersectionObserver' in window) {
+    if (!listaObs) listaObs = new IntersectionObserver(es => { if (es.some(x => x.isIntersecting)) masFilas(); }, {rootMargin:'500px 0px'});
+    listaObs.observe(m);
+  }
+}
+function vDetalle(){
+  const r = S.cur; if (!r) return vLista();
+  const t = estilo(r.hoja), tel = String(r.v['Teléfono'] || '').replace(/\D/g, '');
+  const filas = r.head.map(h => [h, r.v[h]]).filter(x => x[1]);
+  const esFotos = r.archivos.length > 1 || /foto|montaje/i.test(r.hoja);
+  const files = r.archivos.length ? `<div class="sub">${esFotos ? 'Fotos' : 'Archivo'}</div><div class="files" style="--c:${t.c};--t:${t.t}">${r.archivos.map((u, i) => `
+      <button class="docrow" data-act="abrir-url" data-u="${esc(u)}"><span class="di">${ico(esFotos ? 'image' : 'file')}</span><span class="dn"><b>${esFotos ? 'Foto ' + (i + 1) : esc(r.nombre)}</b><small>Abrir en Drive</small></span>${ico('ext',20)}</button>`).join('')}</div>` : '';
+  return `<button class="tool sm noprint" style="display:inline-flex;margin-bottom:12px" data-act="atras">${ico('back',18)}Registros</button>
+    <div class="dhead" style="--c:${t.c};--t:${t.t}"><span class="ri">${ico(t.icono, 26)}</span><div><h1>${esc(r.nombre)}</h1><small>#${esc(r.folio)} · ${esc(t.nombre)} · ${esc(r.fecha)}</small></div></div>
+    <div class="estados">${ESTADOS.map(k => `<button class="${k.toLowerCase()} ${r.estado === k ? 'on' : ''}" data-act="estado" data-v="${k}">${k}</button>`).join('')}</div>
+    <section class="card"><dl class="rv">${filas.map(x => `<div><dt>${esc(x[0])}</dt><dd>${esc(x[1])}</dd></div>`).join('')}</dl></section>
+    ${files}
+    ${tel ? `<div class="sub">Contacto</div><div class="tools"><button class="tool" data-act="abrir-url" data-u="https://wa.me/52${esc(tel)}">${ico('chat',18)}WhatsApp</button><button class="tool" data-act="tel" data-tel="${esc(tel)}">${ico('phone',18)}Llamar</button></div>` : ''}
+    <button class="btn ghost block" style="color:var(--bad);margin-top:8px" data-act="eliminar">${ico('trash',20)}Eliminar registro</button>`;
+}
+function qrDe(url){ const q = qrcode(0, 'M'); q.addData(url); q.make(); return q; }
+function vQR(){
+  const url = linkQR();
+  const volver = `<button class="tool sm noprint" style="display:inline-flex;margin-bottom:12px" data-act="atras">${ico('back',18)}Registros</button>`;
+  if (!url) return volver + `<section class="card"><h2>Tu QR para clientes</h2><p class="small" style="margin-top:-4px">Pega el link de tu página de GitHub (por ejemplo https://tuusuario.github.io/pixelarte-registros/):</p>
+      <div class="f"><input class="in" id="linkq" type="url" placeholder="https://…github.io/pixelarte-registros/"></div><button class="btn primary block" data-act="guardar-link" style="margin-bottom:14px">Guardar link</button></section>`;
+  let svg = ''; try { svg = qrDe(url).createSvgTag({cellSize:8, margin:2, scalable:true}); } catch(e){}
+  return volver + `<div class="qrcard"><h2>${esc(negocio())}</h2><p>Escanea para registrarte</p><div class="qrbox">${svg}</div><div class="qrurl noprint">${esc(url)}</div></div>
+    <div class="tools noprint"><button class="tool" data-act="qr-guardar">${ico('download',18)}Guardar imagen</button><button class="tool" data-act="qr-imprimir">${ico('print',18)}Imprimir</button></div>
+    <div class="tools noprint"><button class="tool" data-act="abrir-url" data-u="${esc('https://wa.me/?text=' + encodeURIComponent('Regístrate aquí: ' + url))}">${ico('chat',18)}Mandar link por WhatsApp</button></div>`;
+}
+function vAjustes(){
+  const listas = Object.keys(S.listas).length ? S.listas : LISTAS_RESPALDO;
+  return `<button class="tool sm" style="display:inline-flex;margin-bottom:12px" data-act="atras">${ico('back',18)}Registros</button><div class="ptitle"><h1>Ajustes</h1></div>
+    <section class="card"><h2>Cuenta</h2>
+      <div class="kv"><div class="grow"><div class="k">${S.via === 'google' ? 'Cuenta de Google' : 'Acceso'}</div><div class="v">${esc(S.via === 'google' ? S.correo : 'Entraste con PIN')}</div></div></div>
+      ${safeUrl(S.info.libro) ? `<div class="kv"><div class="grow"><div class="k">Hoja de cálculo</div><div class="v small">${esc(NOMBRE_HOJA)}</div></div><button class="tool sm" data-act="abrir-url" data-u="${esc(S.info.libro)}">${ico('ext',18)}Abrir</button></div>` : ''}
+      ${S.via === 'google' ? `<div class="f" style="margin-top:12px"><label for="otraHoja">Usar otra hoja (pega su link)</label><input class="in" id="otraHoja" type="url" placeholder="https://docs.google.com/spreadsheets/d/…"><div class="hint" style="margin-top:6px">Déjalo vacío para seguir usando la actual.</div></div>` : ''}
+      <button class="btn ghost block" data-act="logout" style="margin:12px 0 16px">${ico('logout',20)}${S.via === 'google' ? 'Cerrar sesión o cambiar de cuenta' : 'Cerrar sesión'}</button></section>
+    <section class="card"><h2>Negocio</h2>
+      <div class="f"><label for="aNeg">Nombre del negocio</label><input class="in" id="aNeg" value="${esc(ajusteAdm('nombre'))}"></div>
+      <div class="f"><label for="aPin">PIN del panel</label><input class="in" id="aPin" inputmode="numeric" maxlength="8" value="${esc(ajusteAdm('pin'))}"></div>
+      <div class="f"><label for="aLinkT">Link de textos predeterminados (opcional)</label><input class="in" id="aLinkT" type="url" value="${esc(ajusteAdm('link de textos'))}"></div>
+      <div class="f"><label for="aLinkC">Link para clientes (QR)</label><input class="in" id="aLinkC" type="url" placeholder="https://…github.io/pixelarte-registros/" value="${esc(ajusteAdm('link para clientes'))}"></div></section>
+    <section class="card"><h2>Listas</h2>${Object.keys(listas).map((k, i) => `<div class="f"><label for="aL${i}">${esc(k)} (una por renglón)</label><textarea class="in" id="aL${i}" data-lista-nombre="${esc(k)}" style="min-height:170px">${esc(listas[k].join('\n'))}</textarea></div>`).join('')}
+      <div class="hint" style="margin:-6px 0 14px">La opción "No se encuentra" se agrega sola en la página de clientes.</div></section>
+    <button class="btn primary block" data-act="guardar-ajustes" style="margin-bottom:16px;background:var(--brand)">${ico('check',20)}Guardar ajustes</button>
+    <p class="small" style="text-align:center">Versión ${esc(VERSION)} (${esc(ORIGEN)})${S.info.version ? ' · servidor v' + esc(S.info.version) : ''}</p>`;
+}
+
+/* ---------------- Panel: acciones ---------------- */
+function modal(html){ const root = $('#modal-root'); root.innerHTML = `<div class="mback" data-act="modal-bg"><div class="modal" role="dialog" aria-modal="true">${html}</div></div>`; root.classList.add('on'); }
+let confirmRes = null;
+function closeModal(){ const root = $('#modal-root'); root.innerHTML = ''; root.classList.remove('on'); if (confirmRes) { const r = confirmRes; confirmRes = null; r(false); } }
+function confirmar(titulo, msg, ok){ return new Promise(res => { modal(`<h3>${esc(titulo)}</h3><p>${esc(msg)}</p><div class="actions"><button class="btn ghost" data-act="cf-no">Cancelar</button><button class="btn danger" data-act="cf-si" style="flex:1">${esc(ok)}</button></div>`); confirmRes = res; }); }
+function exportar(){
+  const rs = filtrados().slice().reverse();
+  if (!rs.length) { toast('No hay registros para descargar.'); return; }
+  const otras = []; rs.forEach(r => r.head.forEach(h => { if (!otras.includes(h)) otras.push(h); }));
+  const cols = ['Trámite','Folio','Fecha'].concat(otras).concat(['Archivos','Estado']);
+  const val = (r, c) => {
+    let v = c === 'Trámite' ? estilo(r.hoja).nombre : (c === 'Archivos' ? r.archivos.join(' | ') : (r.v[c] || '')); v = String(v);
+    if (/^[=+\-@\t\r]/.test(v)) v = "'" + v;            // evita que Excel lo ejecute como fórmula
+    else if (/^0\d+$/.test(v)) v = '="' + v + '"';      // conserva ceros a la izquierda (0584)
+    return /[",\n\r;]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+  };
+  const csv = '﻿' + [cols.join(',')].concat(rs.map(r => cols.map(c => val(r, c)).join(','))).join('\r\n');
+  const d = new Date(), f = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  guardarArchivo(`Registros ${S.f.t === 'todos' ? 'todos' : estilo(S.f.t).nombre} ${f}.csv`, 'text/csv', b64DeTexto(csv));
+}
+function qrPNG(){
+  const url = linkQR(); if (!url) return;
+  const q = qrDe(url), n = q.getModuleCount(), cell = Math.floor(900 / (n + 4)), qs = cell * (n + 4);
+  const W = 1200, H = 1500, c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d');
+  x.fillStyle = '#fff'; x.fillRect(0, 0, W, H); x.textAlign = 'center';
+  x.fillStyle = '#24135f'; x.font = 'bold 84px system-ui, sans-serif'; x.fillText(negocio(), W / 2, 160);
+  x.fillStyle = '#6c6680'; x.font = '52px system-ui, sans-serif'; x.fillText('Escanea para registrarte', W / 2, 240);
+  const ox = (W - qs) / 2, oy = 320; x.fillStyle = '#000';
+  for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (q.isDark(r, k)) x.fillRect(ox + (k + 2) * cell, oy + (r + 2) * cell, cell, cell);
+  x.fillStyle = '#6c6680'; x.font = '30px system-ui, sans-serif'; x.fillText('Abre la cámara de tu celular y apunta al código', W / 2, oy + qs + 80);
+  guardarArchivo(`QR ${negocio()}.png`, 'image/png', c.toDataURL('image/png').split(',')[1]);
+}
+async function guardarAjustes(){
+  const b = $('[data-act="guardar-ajustes"]'); b.disabled = true; b.innerHTML = '<span class="spin"></span>Guardando…';
+  try {
+    const otra = $('#otraHoja') ? $('#otraHoja').value.trim() : '';
+    if (otra) {
+      const m = /\/d\/([-\w]{20,})/.exec(otra) || /^([-\w]{25,})$/.exec(otra);
+      if (!m) throw new Error('Ese link no parece de una hoja de Google Sheets.');
+      await leerMeta(m[1]); S.hoja = m[1]; LS.set('hoja.' + S.correo, m[1]); S.info.libro = 'https://docs.google.com/spreadsheets/d/' + m[1];
+      await cargar(true); aviso('Ahora uso la otra hoja'); S.vista = 'lista'; render(); return;
+    }
+    const pin = $('#aPin').value.trim(), linkC = $('#aLinkC').value.trim(), linkT = $('#aLinkT').value.trim();
+    if (!/^\d{4,8}$/.test(pin)) throw new Error('El PIN debe tener de 4 a 8 números.');
+    // Solo se revisa el link si cambió: así un link viejo que no es https no impide guardar otros ajustes
+    if (linkC !== String(ajusteAdm('link para clientes') || '') && linkC && !/^https:\/\//.test(linkC)) throw new Error('El link para clientes debe empezar con https://');
+    if (linkT !== String(ajusteAdm('link de textos') || '') && linkT && !/^https:\/\//.test(linkT)) throw new Error('El link de textos debe empezar con https://');
+    const cambios = [[AJ.negocio, clean($('#aNeg').value) || 'Pixel Arte', ajusteAdm('nombre')], [AJ.pin, pin, ajusteAdm('pin')], [AJ.linkTextos, linkT, ajusteAdm('link de textos')], [AJ.linkQR, linkC, ajusteAdm('link para clientes')]];
+    for (const [clave, valor, antes] of cambios) if (String(valor) !== String(antes || '')) {
+      await api({accion:'ajuste', clave, valor});
+      if (/^PIN/.test(clave) && S.via === 'pin') { S.pin = valor; PIN_STORE.set('pin', valor); }
+    }
+    const listas = {}; let cambiaron = false;
+    $$('[data-lista-nombre]').forEach(ta => {
+      const nombre = ta.dataset.listaNombre, vals = Array.from(new Set(ta.value.split('\n').map(clean).filter(x => x && !/^no se encuentra/i.test(x))));
+      listas[nombre] = vals; if (JSON.stringify(vals) !== JSON.stringify(S.listas[nombre] || [])) cambiaron = true;
+    });
+    if (Object.keys(listas).some(k => !listas[k].length)) throw new Error('Las listas no pueden quedar vacías.');
+    if (cambiaron) await api({accion:'listas', listas});
+    await cargar(true); aviso('Ajustes guardados'); S.vista = 'lista'; render(); window.scrollTo(0, 0);
+  } catch(e) { toast(e.message || String(e), 5000); b.disabled = false; b.innerHTML = ico('check',20) + 'Guardar ajustes'; }
+}
+
+/* #####################################################################
+   8. EVENTOS
+   ##################################################################### */
+const BLOQUEADAS_AL_ENVIAR = ['elegir','cambiar','siguiente','anterior','otro','terminar','borrar-datos','elegir-archivo','quitar-archivo','abrir-panel','galeria'];
+document.addEventListener('click', async e => {
+  const el = e.target.closest('[data-act]'); if (!el) return;
+  const act = el.dataset.act;
+  if (act === 'modal-bg' && e.target !== el) return;
+  if (S.sending && BLOQUEADAS_AL_ENVIAR.includes(act)) { toast('Espera a que termine de enviarse.'); return; }
+  switch (act){
+    /* clientes */
+    case 'elegir': {
+      soltarTodos();
+      S.tramite = el.dataset.t; S.paso = 0; S.files = {}; S.reqId = null; S.errEnvio = '';
+      Object.keys(S.val).forEach(k => { const base = k.split('__')[0]; if (!(CAMPOS[base] && CAMPOS[base].guardar)) delete S.val[k]; });
+      ir('cliente', 'form'); break;
+    }
+    case 'cambiar': soltarTodos(); borrarBorrador(); S.vista = 'inicio'; S.files = {}; S.reqId = null; render(true); window.scrollTo(0, 0); break;
+    case 'siguiente': if (validarPaso()) { $('#toast').classList.remove('on'); S.paso++; push(); render(true); window.scrollTo(0, 0); } break;
+    case 'anterior': atras(); break;
+    case 'enviar': enviar(); break;
+    case 'otro': S.vista = 'inicio'; S.tramite = null; render(true); window.scrollTo(0, 0); break;
+    case 'terminar': terminar(); break;
+    case 'borrar-datos': S.val = {}; S.keep = false; render(); break;
+    case 'elegir-archivo': { const inp = $('#in-' + el.dataset.c); if (inp) inp.click(); break; }
+    case 'quitar-archivo': { const lst = S.files[el.dataset.c] || []; soltarArchivos(lst.splice(+el.dataset.i, 1)); pintarArchivos(el.dataset.c); guardarBorrador(true); break; }
+    case 'galeria': verGaleria(el.dataset.carpeta); break;
+    case 'rescate': $('#modal-root').classList.remove('on'); S.sending = false; S.entrando = false; if (S.modo === 'admin' && S.via) ir('admin', 'lista'); else terminar(); break;
+    case 'reintentar-pin': { const pin = PIN_STORE.get('pin'); if (pin) entrarPin(pin); break; }
+    case 'mas': masFilas(); break;
+    case 'abrir-panel': {
+      if (S.via) { ir('admin', 'lista'); cargar(true); break; }
+      ir('admin', 'login');
+      const pin = PIN_STORE.get('pin'); if (pin && SCRIPT_OK) entrarPin(pin, true);
+      break;
+    }
+    case 'ver-formulario': ir('cliente', 'inicio'); recuperarBorrador(); break;
+    /* panel */
+    case 'login-google': entrarGoogle(); break;
+    case 'login-pin': entrarPin(($('#pin') || {}).value || ''); break;
+    case 'salir-panel': salirPanel(); break;
+    case 'reload': cargar(false); break;
+    case 'ajustes': if (S.vista !== 'ajustes') ir('admin', 'ajustes'); break;
+    case 'qr': ir('admin', 'qr'); break;
+    case 'atras': atras(); break;
+    case 'ft': S.f.t = el.dataset.v; $$('.chip').forEach(c => c.classList.toggle('on', c === el)); renderList(); break;
+    case 'fe': S.f.e = el.dataset.v; $$('.seg button').forEach(c => c.classList.toggle('on', c === el)); renderList(); break;
+    case 'abrir': { const r = S.recs[+el.dataset.i]; if (!r) { renderList(); break; } S.cur = r; ir('admin', 'detalle'); break; }
+    case 'abrir-url': abrir(safeUrl(el.dataset.u)); break;
+    case 'tel': abrir('tel:' + el.dataset.tel); break;
+    case 'exportar': exportar(); break;
+    case 'qr-guardar': qrPNG(); break;
+    case 'qr-imprimir': imprimir(); break;
+    case 'guardar-link': {
+      const v = $('#linkq').value.trim();
+      if (!/^https:\/\//.test(v)) { toast('El link debe empezar con https://'); break; }
+      el.disabled = true;
+      try { await api({accion:'ajuste', clave:AJ.linkQR, valor:v}); S.ajustes = S.ajustes.filter(r => r[0].toLowerCase().indexOf('link para clientes') !== 0).concat([[AJ.linkQR, v]]); render(); aviso('Link guardado'); }
+      catch(err){ el.disabled = false; toast(err.message, 5000); }
+      break;
+    }
+    case 'estado': {
+      const r = S.cur; if (!r) break;
+      const antes = r.estado, nuevo = el.dataset.v; if (antes === nuevo) break;
+      r.estado = nuevo; $$('.estados button').forEach(b => b.classList.toggle('on', b === el));   // se ve al instante
+      try { await api({accion:'estado', hoja:r.hoja, id:r.id, fila:r.fila, folio:r.folio, estado:nuevo}); aviso('Marcado como ' + nuevo); }
+      catch(err){ r.estado = antes; if (S.vista === 'detalle' && S.cur === r) render(); if (S.via) toast('No se pudo cambiar: ' + err.message, 5000); }
+      break;
+    }
+    case 'eliminar': {
+      const r = S.cur; if (!r) break;
+      if (!(await confirmar('¿Eliminar este registro?', 'Se borra de la hoja de cálculo y sus archivos se mandan a la papelera de Drive.', 'Eliminar'))) break;
+      el.disabled = true; el.innerHTML = '<span class="spin-d" style="width:20px;height:20px"></span>Eliminando…';
+      try { await api({accion:'eliminar', hoja:r.hoja, id:r.id, fila:r.fila, folio:r.folio}); aviso('Registro eliminado'); S.recs = S.recs.filter(x => x !== r); S.recs.forEach((x, i) => { x.idx = i; }); S.cur = null; atras(); cargar(true); }
+      catch(err){ if (S.vista === 'detalle') render(); if (S.via) toast('No se pudo eliminar: ' + err.message, 5000); }
+      break;
+    }
+    case 'guardar-ajustes': guardarAjustes(); break;
+    case 'logout': if (await confirmar('¿Cerrar sesión?', 'Podrás volver a entrar cuando quieras.', 'Cerrar sesión')) cerrarSesion(); break;
+    case 'cerrar-modal': case 'modal-bg': case 'cf-no': closeModal(); break;
+    case 'cf-si': { const r = confirmRes; confirmRes = null; closeModal(); if (r) r(true); break; }
+  }
+});
+let buscaT = null;
+document.addEventListener('input', e => {
+  const t = e.target;
+  // La búsqueda espera a que dejes de teclear un instante (se siente más fluida con muchos registros)
+  if (t.id === 'q') { S.f.q = t.value; clearTimeout(buscaT); buscaT = setTimeout(() => renderList(), 110); return; }
+  const id = t.dataset && t.dataset.bind; if (!id || t.type === 'radio') return;
+  let v = t.value;
+  if (CAMPOS[id] && CAMPOS[id].tipo === 'telefono') { v = v.replace(/\D/g, '').slice(0, 10); if (v !== t.value) t.value = v; }
+  S.val[id] = v;
+  const f = t.closest('.f'); if (f) f.classList.remove('err');
+  guardarBorrador(false);
+});
+document.addEventListener('change', e => {
+  const t = e.target, id = t.dataset && t.dataset.bind;
+  if (t.dataset && t.dataset.subir) { agregarArchivos(t.dataset.subir, t.files); t.value = ''; return; }
+  if (!id) return;
+  const d = CAMPOS[id.split('__')[0]];
+  if (t.type === 'radio') { S.val[id] = t.value; $$(`input[name="op-${id}"]`).forEach(r => r.closest('.radio').classList.toggle('sel', r.checked)); }
+  else S.val[id] = t.value;
+  if (d && d.tipo === 'lista') { t.value = canonico(d.lista, t.value); S.val[id] = t.value; }
+  if (d && d.mayus) { t.value = clean(t.value).toUpperCase(); S.val[id] = t.value; }
+  const f = t.closest('.f'); if (f) f.classList.remove('err');
+  actualizarVisibles();
+  guardarBorrador(false);
+});
+document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'pin') entrarPin(e.target.value); });
+
+/* #####################################################################
+   9. ARRANQUE
+   ##################################################################### */
+// Errores inesperados: se registran y se avisa, pero la app sigue funcionando
+window.addEventListener('error', e => { console.error(e.error || e.message); });
+window.addEventListener('unhandledrejection', e => { console.error(e.reason); if (e.preventDefault) e.preventDefault(); });
+
+// Aviso de "Sin internet" y reconexión
+function pintarRed(){
+  const off = navigator.onLine === false;
+  document.body.classList.toggle('offline', off);
+  const b = $('#netbar'); if (b) b.classList.toggle('on', off);
+}
+window.addEventListener('offline', pintarRed);
+window.addEventListener('online', () => {
+  pintarRed();
+  if (S.modo === 'admin' && S.via && S.vista !== 'ajustes') cargar(true);
+  else if (S.modo === 'cliente' && S.vista === 'form' && !S.sending && tramite() && S.paso >= tramite().pasos.length) toast('Ya hay internet. Toca Enviar.');
+  if (S.modo === 'cliente' && !CFG.cargado) cargarConfig();
+});
+
+// El panel se actualiza solo: cada minuto mientras lo ves y al volver a la app
+const AUTO_MS = Number(window.__autoRefreshMs) || 60000;
+function puedeAutoCargar(){ return document.visibilityState !== 'hidden' && S.modo === 'admin' && !!S.via && ['lista','detalle'].includes(S.vista) && navigator.onLine !== false && !cargaP; }
+setInterval(() => { if (puedeAutoCargar() && Date.now() - ultimaCarga >= AUTO_MS) cargar(true); }, Math.min(15000, AUTO_MS));
+document.addEventListener('visibilitychange', () => { if (puedeAutoCargar() && Date.now() - ultimaCarga > Math.min(20000, AUTO_MS)) cargar(true); });
+
+(function iniciar(){
+  const vieja = LS.get('version');
+  if (vieja && vieja !== VERSION && EN_APK) setTimeout(() => aviso('✨ La app se actualizó a la versión más reciente'), 600);
+  LS.set('version', VERSION);
+  render();
+  pintarRed();
+  cargarConfig();
+  if (S.modo === 'cliente') recuperarBorrador();
+  if (EN_APK) {
+    const via = LS.get('via');
+    if (via === 'google' && LS.get('sesion') === '1') entrarGoogle();
+    else if (via === 'pin' && PIN_STORE.get('pin') && SCRIPT_OK) entrarPin(PIN_STORE.get('pin'), true);
+  }
+})();
+})();
+</script>
+</body>
+</html>
